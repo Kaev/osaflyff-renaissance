@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Office Quest template   ---------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName = "Nouveau départ"
+g_dwQuestID = 2004
+g_szNPCName = "MaFl_Mikyel"
+g_dwChgEXP = 118
+g_dwChgPenya = 4500
+g_dwReqItemID = 2954
+g_dwReqItemAmount = 7
+g_dwReqMinLVL = 9
+g_dwReqMaxLVL = 11
+g_szReqJobs = {"VAGRANT"}
+g_szAddDialogs = {"La maternelle a besoin de Peluches pour les enfants. Acceptes-tu cette mission?","Tu peux récupérer des Peluches sur les Demians de Madren."}
+g_szFinishDialogs = {"Excellent travail ! Tu as terminé la quête."}
+g_szCannotFinishDialogs = {"Tu n'as pas encore assez de Peluches."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndNPCDialog (g_dwQuestID,2,"Tu ne veux pas faire cette quête ? Tant pis… Mais si tu changes d'avis, reviens me voir.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,3,0)
+SetStartNPC(g_dwQuestID,3,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,3,g_szNPCName)
+AddEndRequiredItem(g_dwQuestID,3,g_dwReqItemID,g_dwReqItemAmount)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+SetEndChangePenya(g_dwQuestID,4,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,4,g_dwChgEXP)
+AddEndRemoveItem(g_dwQuestID,4,g_dwReqItemID,g_dwReqItemAmount)

@@ -1,0 +1,67 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2c - L'Autel"
+g_dwQuestID = 191
+g_szNPCName = "MaSa_Parine"
+g_szNPCName2 = "MaDa_Pereb"
+g_szNPCNameEnd = "MaDa_Condram"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MAGE"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,190,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant allez voir le maitre Elementaliste Condram à Darkon 3")
+AddEndNPCDialog(g_dwQuestID,1,"Condram cherche quelque chose de très important. C'est le parfum de Lillip qui est quelque part dans Heret, à  Darkon 3.")
+AddEndNPCDialog(g_dwQuestID,1,"Si vous voulez impressionner Condram, vous ferez mieux de le lui rapporter d'accord ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on a va parler à lahola
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"C'est un problème sérieux. Il n'y a personne d'autres pour le résoudre. S'il vous plait touver le parfum. Interrogez des gens, s'il le faut!")
+
+SetEndNPC(g_dwQuestID,2,g_szNPCName2)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Vous cherchez le parfum de Lillip ? Oui je l'ai, incroyable ce que les gens laisse trainer par terre !")
+AddEndNPCDialog(g_dwQuestID,2,"Vous le voulez ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+--On va parler à Condram
+AddState(g_dwQuestID,3,0)
+AddStartAddItem(g_dwQuestID,3,18180,1)
+SetStartNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddStartNPCDialog(g_dwQuestID,3,"Vous êtes à l'un des autels qui protège l'âme des héros. Que puis je pour vous ?")
+
+SetEndNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddEndRequiredItem(g_dwQuestID,3,18180,1)
+AddEndNPCDialog(g_dwQuestID,3,"Oh, merci beaucoup. Maintenant je vais pouvoir faire de mon mieux en tant que prêtre!")
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+AddEndRemoveItem(g_dwQuestID,3,18180,1)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+
+AddState(g_dwQuestID,4,14)
+

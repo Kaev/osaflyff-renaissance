@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 4 - Le successeur"
+g_dwQuestID = 166
+g_szNPCName = "MaFl_Kurumin"
+g_szNPCNameEnd = "MaDa_Lobiet"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,165,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Tu approches de ton but… et la fin de ton apprentissage se passera à Darkon 3 !")
+AddEndNPCDialog(g_dwQuestID,1,"Là-bas, tu trouveras l'Autel où siège Lobiet, le Doyen des Chevaliers. Remet lui le parchemin que je t'ai confié, il te reconnaîtra alors comme un digne successeur de Billein. Mais avant de te présenter à Lobiet…")
+AddEndNPCDialog(g_dwQuestID,1,"… Il y a une mission que tu dois accomplir. J'ai entendu dire que les Pierres des Héros contenant les âmes des sauveurs de Madrigal avaient été volées par les Wheelems au Jardin de Rhisis.")
+AddEndNPCDialog(g_dwQuestID,1,"Récupère les 8 Pierres des Héros auprès des Wheelems et apporte-les au Doyen des Chevaliers Lobiet.\n Bonne chance, futur Chevalier !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Lobiet avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Je sais que ça ne va pas être facile avec les Wheelems, mais tu n'auras pas achevé ton apprentissage tant que tu n'auras pas ramené les Pierres des Héros.")
+
+
+--Si on parle à Lobiert apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddQuestDrop(g_dwQuestID,2,53,18170,3000000000,1)
+AddEndRequiredMonsterKill(g_dwQuestID,2,53,8) --tuer 8 wheelems
+AddEndRequiredItem(g_dwQuestID,2,18170,8) --Obtenir 8 pierre de heros
+AddEndNPCDialog(g_dwQuestID,2,"Hmm.. Celà me donne un mauvais pressentiment comme je le pensais, et même les pierres d'âme y réagissent. Nous devons rapidement en apprendre plus.")
+AddEndNPCDialog(g_dwQuestID,2,"En tout cas, merci beaucoup. Grâce à vous, l'âme des héros sera sauf. Ne vous inquiétez pas j'en trouverais la cause.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Lobiert
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18170,8)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+AddEndRemoveItem(g_dwQuestID,3,18168,1)
+AddEndAddItem(g_dwQuestID,3,10253,1)

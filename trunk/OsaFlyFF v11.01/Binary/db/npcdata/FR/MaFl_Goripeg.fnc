@@ -1,0 +1,1 @@
+AddText("Les humains nous reegarde comme des sous fifres car ils nous ont toujours fait faire leur sale boulot. Mais aussi gentils qu'ils soient, nous sommes bien plus fort qu'eux, en aucun cas, inferieur. Compris?","START");

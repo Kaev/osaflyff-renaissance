@@ -1,0 +1,50 @@
+g_dwQuestID = 156
+g_szQuestName = "Etape 2 - Forger l'arme"
+g_szNPCNameStart = "MaFl_Elic"
+g_szNPCNameEnd = "MaFl_Maki"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,120)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,155,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitation pour avoir passé le premier test!")
+AddEndNPCDialog(g_dwQuestID,1,"Le deuxième test consiste à réunir tous les ingrédients pour fabriquer l'arme de l'acolyte")
+AddEndNPCDialog(g_dwQuestID,1,"Récupérez 5 forform de mushpang et amenez les au maitre des acolytes. Pas des capitaine ou des small")
+AddEndNPCDialog(g_dwQuestID,1,"Le maitre des acolytes se trouve dans la zone nord de Flaris. Vous êtes toujours motivé ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- Paying 5000 Penya
+AddState(g_dwQuestID,2,0)
+
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tiens Elic m'a dit que vous m'amèneriez des forform, où sont elles ? J'en ai besoin pour la suite.")
+AddQuestDrop(g_dwQuestID,2,97,2951,500000000,5) --donne la possibiliter de droper à 16% de chance
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndRequiredItem(g_dwQuestID,2,2951,5)
+
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Merci d'être venu. Maintenant écoutez attentivement. Un acolyte peut utiliser 2 type d'armes : le poing et le sceptre.")
+AddEndNPCDialog(g_dwQuestID,2,"Le poing permet de combattre efficacement des monstre en utilisant des technique de combat.")
+AddEndNPCDialog(g_dwQuestID,2,"Le sceptre invoque des pouvoir capable d'acroitre les capacités alliées et pouvant les soigner durant le combat")
+AddEndNPCDialog(g_dwQuestID,2,"Etre capable de passer du poing au sceptre rapidement est important si vous devez faire face à un dangereux adversaire. Vous comprenez ?")
+AddEndNPCDialog(g_dwQuestID,2,"Avez vous ammené les 5 formforms que Elic vous a demandé ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_FINISH_QUEST","__NO__",g_dwQuestID,2);
+
+-- Reward: 1xBlink Sword
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,2951,5)
+AddEndAddItem(g_dwQuestID,3,181,1)
+AddFinishQuestDialog(g_dwQuestID,3,"Voici un sceptre. *vous tend l'arme*")

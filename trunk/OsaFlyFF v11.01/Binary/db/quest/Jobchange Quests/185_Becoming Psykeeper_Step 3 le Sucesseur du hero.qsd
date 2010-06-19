@@ -1,0 +1,53 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 3 - Le successeur"
+g_dwQuestID = 185
+g_szNPCName = "MaFl_Cuarine"
+g_szNPCNameEnd = "MaFl_Ryupang"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MAGICIAN"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,184,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant je dois rendre cette tunique magique à son propriétaire. Son premier propriétaire était Offerep bien sûr, mais désormais une personne s'occupe des reliques du Héros des Sorciers.")
+AddEndNPCDialog(g_dwQuestID,1,"Il te faut maintenant lui rapporter cette tunique magique. Son nom est Ryupang, il dirige les soldats de la ville de Madren. Rapporter cette tunique à Ryupang est vraiment important...")
+AddEndNPCDialog(g_dwQuestID,1,"Ce n'est pas très loin d'ici, va lui remettre s'il te plaît")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on reparle a Cuarine
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Remettre la Tunique d'Offerep à Ryupang, le chef des soldats de Madren Town.")
+
+--Si on parle à Ryupang
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18177,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh... C'est la... Merci infiniment ! Je la cherchais depuis des années…")
+AddEndNPCDialog(g_dwQuestID,2,"J'apprécie énormément ce que tu as fait ! Mon devoir est enfin accompli ! Voici quelque chose pour te récompenser de tes efforts…")
+AddEndNPCDialog(g_dwQuestID,2,"Ceci est le Parchemin que seuls les descendants de ma famille peuvent obtenir. Il t'appartient désormais.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Ryupang
+AddState(g_dwQuestID,3,14)
+AddEndAddItem(g_dwQuestID,3,10391,1)

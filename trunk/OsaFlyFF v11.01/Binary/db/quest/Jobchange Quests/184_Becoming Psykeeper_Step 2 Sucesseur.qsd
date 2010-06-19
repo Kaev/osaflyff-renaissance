@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2 - Le successeur"
+g_dwQuestID = 184
+g_szNPCName = "MaDa_Cylor"
+g_szNPCNameEnd = "MaFl_Cuarine"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MAGICIAN"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,183,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitations, voici une lettre de recommandation confirmant que tu es sur la voie de devenir Sorcier. Il faut que tu l'apportes à Cuarine, le Sage des Sorciers qui se trouve à la Fontaine des Défunts de Flaris.")
+AddEndNPCDialog(g_dwQuestID,1,"Mais avant d'aller t'adresser à Cuarine, j'aimerai que tu retrouves la Tunique d'Offerep qui a été volée après la Grande Guerre.")
+AddEndNPCDialog(g_dwQuestID,1,"On raconte qu'elle aurait été volée par une dénommée Kynsy, qui l'utiliserai actuellement les pouvoirs de la relique. Kynsy serait à Darkon 1, dans la zone de l'Usine des Erons…")
+AddEndNPCDialog(g_dwQuestID,1,"Ne sous-estime jamais tes capacités ! Tu dois être fort, ou tu ne deviendras jamais un Héros.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+-- Si onreparle a Cuarine avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Retrouver la Tunique d'Offerep volée par Kynsy qui se cache à l'Usine des Erons de Darkon 1, puis la rapporter au Sage des Sorciers Cuarine, à la Fontaine des Défunts de Flaris.")
+
+
+--Si on parle à Cuarine apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,845,1)
+AddQuestDrop(g_dwQuestID,2,845,18177,3000000000,1)
+AddQuestDrop(g_dwQuestID,2,845,18178,3000000000,1)
+AddEndRequiredItem(g_dwQuestID,2,18177,1)
+AddEndRequiredItem(g_dwQuestID,2,18178,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh ! C'est... c'est la Tunique magique que portait Offerep pendant la Grande Guerre ! Où l'as-tu retrouvé ?! Elle avait été perdue depuis des années ")
+AddEndNPCDialog(g_dwQuestID,2,"et personne n'avait réussi à la retrouver à ce jour…J'apprécie vraiment les efforts que tu as fournis pour la retrouver.")
+AddEndNPCDialog(g_dwQuestID,2,"Merci, merci infiniment ! Les âmes de nombreuses personnes vont et viennent ici à la Fontaine des Défunts. C'est ici la limite entre la vie et la mort.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Cuarine
+AddState(g_dwQuestID,3,14)

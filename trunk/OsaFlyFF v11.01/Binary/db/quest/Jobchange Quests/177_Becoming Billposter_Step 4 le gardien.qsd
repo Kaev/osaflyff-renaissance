@@ -1,0 +1,62 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 4 - Le gardien"
+g_dwQuestID = 177
+g_szNPCName = "MaDa_Fera"
+g_szNPCNameEnd = "MaDa_Capafe"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,176,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Je peux maintenant te confier le Sceau des Héros, qui confirme que tu as relevé avec succès tous les défis qui se sont présentés. Mais il te faut encore réussir l'épreuve finale…")
+AddEndNPCDialog(g_dwQuestID,1,"Au sud de Darkon 3, à Guardiane, se trouve un lieu appelé la Chambre du Gardien. Il te faut y pénétrer et vaincre le Gardien des Héros, Venel. Ta dernière épreuve sera de lui prendre son coeur !")
+AddEndNPCDialog(g_dwQuestID,1,"Tu pourras alors te présenter à la Gardienne des Moines, Capafe. Je te souhaite que la maîtrise de Roentel t'accompagne !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on parle a Capafe avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartAddItem(g_dwQuestID,2,10249,1) --on donne la mark of hero
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Seuls ceux reconnus comme successeurs de Roentel sont admis ici. Poursuis ton apprentissage...")
+
+
+--Si on parle à Capafe apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,663,1) --il faut tuer le venel
+AddQuestDrop(g_dwQuestID,2,663,10254,3000000000,1) --on permet de droper un coeur de venel à 100%
+AddEndRequiredItem(g_dwQuestID,2,10249,1) --il faut la mark of hero
+AddEndRequiredItem(g_dwQuestID,2,10254,1) -- il faut le coeur du venel
+AddEndNPCDialog(g_dwQuestID,2,"Bienvenue à Guardiane. Tu as réussi brillament la dernière épreuve et mérite désormais d'être l'un des sucesseurs du Héros des Moines.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Capafe
+AddState(g_dwQuestID,3,14)
+SetEndSetJob(g_dwQuestID,3,"BILLPOSTER")
+SetEndChangeSkillPoint(g_dwQuestID,3,120)
+AddEndRemoveItem(g_dwQuestID,3,10249,1)
+AddEndRemoveItem(g_dwQuestID,3,10254,1)
+AddEndRemoveItem(g_dwQuestID,3,10389,1)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+AddEndRemoveItem(g_dwQuestID,3,18174,1)

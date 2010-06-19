@@ -1,0 +1,32 @@
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2816,200); --orange juice 20%
+AddDrop(2816,200); --orange juice 20%
+AddDrop(3211,13); --card elem river 0.13%
+AddDrop(3211,25); --card elem river 0.25%
+AddDrop(522,13); --parmil helmet 0.13%
+AddDrop(523,13); --parmil suit
+AddDrop(524,13); --gauntlet
+AddDrop(525,13); --parmil boots
+AddDrop(526,13); --leaf helmet
+AddDrop(527,13); --leaf suit
+AddDrop(528,13); --leaf gauntlet
+AddDrop(529,13); --leaf boots 0.13%
+
+AddDrop(500,50); --pike armor 5%
+AddDrop(503,50); --pike armor
+AddDrop(507,50); --pike armor
+AddDrop(511,50); --pike armor
+
+AddDrop(501,50); --silk armor 5%
+AddDrop(505,50); --silk armor
+AddDrop(509,50); --silk armor
+AddDrop(513,50); --silk armor
+
+
+AddDrop(2035,1); --ori/sunstone 0.1%
+AddDrop(2036,1); --moon stone 0.1%
+
+AddDrop(2951,330); --forform 33%
+AddDrop(2951,330); --forform 33%

@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2a - Le successeur"
+g_dwQuestID = 63
+g_szNPCName = "MaDa_Eliff"
+g_szNPCNameEnd = "MaFl_Kimel"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ACROBAT"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,62,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitation! Vous avez passé le premier test! Apportez cette lettre de recommandation au Sage-Ranger ,Kimel ,à la Fountain of the Dead à Flaris.")
+AddEndNPCDialog(g_dwQuestID,1,"Mais d'abord trouvez Rubo qui vit avec les syllica, dans les grottes de Darkon 2. Rubo possède une lettre de Hynan que recherche Kimel.")
+AddEndNPCDialog(g_dwQuestID,1,"Récupérez la lettre et amenez la lui. Bonne chance")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+--On va parler à Kimel
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)--on a pas recupéré sa lettre
+AddStartNPCDialog(g_dwQuestID,2,"Avez vous rencontré Eliff? Dans ce cas pourquoi venez vous les mains vide ? Ne vous a t-elle pas demandé de m'amener quelque chose? ça n'a pas de sens...")
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddQuestDrop(g_dwQuestID,2,690,10392,3000000000,1) --on permet de droper la lettre de Hynan à 100%
+AddEndRequiredMonsterKill(g_dwQuestID,2,690,1) --il faut tuer Rubo
+
+AddEndRequiredItem(g_dwQuestID,2,10392,1) --il faut la lettre
+AddEndNPCDialog(g_dwQuestID,2,"Oui! C'est ce que je cherchais! Ha ha ha. Cette lettre appartenait au héro Ranger Hynan. Hynan a laissé cette lettre pour ses parents avant de partir.")
+AddEndNPCDialog(g_dwQuestID,2,"Mais Hynan a perdu cette lettre durant la guerre. Et j'avais entendu dire que Rubo l'avait il y a quelques jours. Merci pour votre aide !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+

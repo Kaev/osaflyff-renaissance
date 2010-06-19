@@ -1,0 +1,93 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-- Initialisation des variables
+
+g_dwQuestID 		= 1022
+g_szQuestName 		= "Troupe des Mages Pourpres"
+g_szNPCNameStart    = "MaDa_CloneHachal"
+g_szNPCNameEnd      = "MaDa_Hachal"
+g_dwChgEXP 		    = 3920
+g_dwChgPenya 		= 15800
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredKillMonster = {{811,10},{812,1}}
+g_RequiredItems     = { {18130,1}} -- {itemID,quantité}
+g_RewardItems		= { {18131,1}} -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {
+"Hmm... Il semble que ce morceau de tissu porte le même motif que celui que j'ai vu sur le sol.", 
+"Ce tissu semble contenir un mystérieux pouvoir… Peut-être que... (réfléchissant) As-tu déjà entendu parlé de la Troupe des Mages Pourpres ?" ,
+"Je ne détiens que très peu d'informations sur eux... mais étant donné qu'ils défendaient ce motif, il doit forcément y avoir un lien.",
+"Il faut que j'obtienne plus d'informations ! Je peux toujours compter sur toi ?"}
+g_szRefuseQuestDialog = {"Quoi tu aurais peur d'eux ? Je te pensais vraiment plus courageux…"}
+g_szCannotFinishDialogsStartNPC = {"Bien ! Essaie d'obtenir des informations sur cette troupe, je pense que la seule solution pour cela est de les combattre... Pour ma part je dois retourner à Darkon, rejoins moi ensuite !"}
+g_szCannotFinishDialogsEndNPC = {""}
+g_szFinishDialogs 	  = {"Hmm... C'est exactement ce que je pensais, les Mages Pourpres sont bien impliqués là-dedans... Merci beaucoup pour ces informations !"}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+AddQuest(g_dwQuestID,g_szQuestName,0,5)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartRequiredQuest(g_dwQuestID,0,1021,4)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+for i = 1 , table.getn(g_szRefuseQuestDialog) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szRefuseQuestDialog[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+-- Cas on accepte la quete puis on reparle à Hachal
+AddState(g_dwQuestID,3,0)
+SetEndNPC(g_dwQuestID,3,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsStartNPC) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsStartNPC[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_ADD_QUEST","__OK__",g_dwQuestID,4);
+
+-- On va voir Hachal à Darkon
+AddState(g_dwQuestID,4,0)
+SetStartNPC(g_dwQuestID,4,g_szNPCNameEnd)
+SetEndNPC(g_dwQuestID,4,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,4,g_szQuestName,g_dwQuestID,4)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,4,g_szFinishDialogs[i])
+end
+for i = 1 , table.getn(g_RequiredKillMonster) , 1 do
+	AddEndRequiredMonsterKill(g_dwQuestID,4,g_RequiredKillMonster[i][1],g_RequiredKillMonster[i][2]) 
+end
+AddEndNPCAnswerButton(g_dwQuestID,4,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,5)
+
+AddState(g_dwQuestID,5,14)
+SetEndChangePenya(g_dwQuestID,5,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,5,g_dwChgEXP)
+--for i = 1 , table.getn(g_RequiredItems) , 1 do
+--	AddEndRemoveItem(g_dwQuestID,5,g_RequiredItems[i][1],g_RequiredItems[i][2])
+--end
+--for i = 1 , table.getn(g_RewardItems) , 1 do
+--   AddEndAddItem(g_dwQuestID,5,g_RewardItems[i][1],g_RewardItems[i][2])
+--end
+--AddFinishQuestDialog(g_dwQuestID,5,"Voici la lettre. * vous tend la lettre * ")
+

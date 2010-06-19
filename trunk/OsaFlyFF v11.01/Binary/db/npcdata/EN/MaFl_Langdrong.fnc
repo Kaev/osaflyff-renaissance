@@ -1,0 +1,1 @@
+AddText("You want me to say hello to you? Never! I may live like you humans but I am nothing like you! Remember that!","START");

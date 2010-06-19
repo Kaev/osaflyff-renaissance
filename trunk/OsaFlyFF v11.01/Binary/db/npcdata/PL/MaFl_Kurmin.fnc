@@ -1,0 +1,1 @@
+AddText("The Earth trembles in fear as the great sword of the Goddesses clashes with the shield of the Heroes.","START");

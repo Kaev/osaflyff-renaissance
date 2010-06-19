@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 3 - Le successeur"
+g_dwQuestID = 165
+g_szNPCName = "MaFl_Hormes"
+g_szNPCNameEnd = "MaFl_Kurumin"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,164,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"J'apprécie vraiment les efforts que tu as fournis pour retrouver le Heaume de Billein. Mais ta quête n'est pas encore terminée...")
+AddEndNPCDialog(g_dwQuestID,1,"Il te faut maintenant te rendre à la Plaine de Bubble avec ce casque. Là-bas tu y rencontreras Kurmin. La famille de Kurmin s'occupe de la maison et des reliques de Billein depuis des générations.")
+AddEndNPCDialog(g_dwQuestID,1,"Ce heaume te permettra d'obtenir quelque chose de très utile.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Hormes
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Que Billein t'accompagne dans ta quête !")
+
+--Si on parle à Kurumin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18169,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh... C'est la... Merci infiniment ! Je la cherchais depuis des années…")
+AddEndNPCDialog(g_dwQuestID,2,"Je suis... Quoi ? Tu as déjà entendu parler de moi ? Bon, et bien je n'ai plus besoin de me présenter alors… Mais j'ai quelque chose pour te récompenser de tes efforts.")
+AddEndNPCDialog(g_dwQuestID,2,"Ceci est le Parchemin que seuls les descendants de ma famille peuvent avoir. Il t'appartient désormais.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Hormes
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18169,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

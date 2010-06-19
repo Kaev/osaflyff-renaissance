@@ -1,0 +1,49 @@
+g_dwQuestID = 160
+g_szQuestName = "Etape 2 - Forger l'arme"
+g_szNPCNameStart = "MaSa_Wingyei"
+g_szNPCNameEnd = "MaSa_Hee"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,120)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,159,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Vous avez passé le premier test. Mais il reste encore pas mal de choses à faire.")
+AddEndNPCDialog(g_dwQuestID,1,"Le second test est au sujet des armes. Vous devez obtenir des matériaux ainsi que les informations sur les armes de magiciens.")
+AddEndNPCDialog(g_dwQuestID,1,"Récupérez 10 pierres brillantes sur des jeunes Aibatts, et amenez les au maitre magicien. Des small pas des capitaines ou des normaux !")
+AddEndNPCDialog(g_dwQuestID,1,"Le maitre des mage se trouve à l'ouest de saint city. Vous êtes toujours motivé ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- Paying 5000 Penya
+AddState(g_dwQuestID,2,0)
+
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tiens Wingyei m'a dit que vous m'amèneriez des pierres brillantes, où sont elles ? J'en ai besoin pour la suite.")
+AddQuestDrop(g_dwQuestID,2,20,2950,1000000000,10) --donne 33% de chance de drop
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndRequiredItem(g_dwQuestID,2,2950,10)
+
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Merci d'être venu. Maintenant écoutez attentivement. Un magicien peut utiliser 2 type d'armes : le baton et la baguette.")
+AddEndNPCDialog(g_dwQuestID,2,"La baguette est une arme magique qui vous permet de faire des attaques à distance. Cool n'est ce pas ? Vous pouvez accomplir des attaques de mélés avec un baton …")
+AddEndNPCDialog(g_dwQuestID,2,"…mais c'est une arme très lentes. Apprendre l'equilibre entre ces deux armes est la clef d'un grand magicien. Ho ho ho!")
+AddEndNPCDialog(g_dwQuestID,2,"Avez vous ammené les 10 pierres brillantes que Wingyei vous a demandé ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_FINISH_QUEST","__NO__",g_dwQuestID,2);
+
+-- Reward: 1xBlink Sword
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,2950,10) --on recupere les pierres brillantes
+AddEndAddItem(g_dwQuestID,3,231,1) --on donne un baton
+AddFinishQuestDialog(g_dwQuestID,3,"Voici un baton. *vous tend l'arme*")

@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Office Quest template   ---------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName = "Complétement marteau!"
+g_dwQuestID = 2071
+g_szNPCName = "MaDa_RedRobeGirl"
+g_dwChgEXP =  362154468
+g_dwChgPenya = 0
+g_dwReqItemID = 3007
+g_dwReqItemAmount = 50
+g_dwReqMinLVL = 96
+g_dwReqMaxLVL = 106
+g_szReqJobs = {"BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs = {"Pouvez-vous rassembler 50 Hammamers pour moi ?","Vous les trouverez sur n'importe quel Shuhamma."}
+g_szFinishDialogs = {"Merci beaucoup. Voila votre récompense."}
+g_szCannotFinishDialogs = {"Vous n'avez pas 50 Hammamers. J'ai besoin du nombre exact."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndNPCDialog (g_dwQuestID,2,"Vous ne voulez pas me les apporter ? D'accord, n'hésitez pas à revenir me voir si vous changez d'avis.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,3,0)
+SetStartNPC(g_dwQuestID,3,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,3,g_szNPCName)
+AddEndRequiredItem(g_dwQuestID,3,g_dwReqItemID,g_dwReqItemAmount)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+SetEndChangePenya(g_dwQuestID,4,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,4,g_dwChgEXP)
+AddEndRemoveItem(g_dwQuestID,4,g_dwReqItemID,g_dwReqItemAmount)

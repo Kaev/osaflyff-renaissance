@@ -1,0 +1,15 @@
+AddText("Bonjour, en quoi puis je vous aider ?","START");
+AddLink("Présentation","Presentation");
+AddLink("Ville","Ville");
+AddLink("Classes","Classes");
+AddLink("Vie et Mort","VieMort");
+AddLink("Au revoir","STOP");
+AddText("Bonjour, je m'appel Isruel et je suis ici pour répondre à toutes vos questions","Presentation");
+AddText("Flarine est la capitale de Madrigal.Mais attention, les monstres rôdent auxalentours...","Ville");
+AddText("Avant de quitter la ville, soit bien sur d'avoir collecté toutes les informations nécessaires et de t'être équipé comme il se doit!","Ville");
+AddText("Au niveau 15, tu pourra rencontrer un entraineur afin de changer de classe. Il te faudra choisir entre, Mercenaire, Magicien, Acolyte ou Acrobate","Classes");
+AddText("Le mercenaire est un expert des armes blanches, le magicien incante des sorts d'attaque, l'acolyte soigne et bénit ses compagnons, et l'Acrobate combat à l'arc et au yo-yo!","Classes");
+AddText("Tu trouvera l'entraineur des mercenaires et Acolytes à Flarine, celui desmagicien à saint city et celui des acrobate à darkon...","Classes");
+AddText("Ne t'affole pas, si tu viens à mourrir - et celà t'arrivera - tu pourras ressuciter au Cristal de vie de la ville","VieMort");
+AddText("Cependant tu as partir du niveau 21, tu perdra quelques points d'expériences alors soit vigilant. On dit que certains parchemin permettent d'éviter cette perte...","VieMort");
+AddText("Bonne aventure à Madrigal!","STOP");

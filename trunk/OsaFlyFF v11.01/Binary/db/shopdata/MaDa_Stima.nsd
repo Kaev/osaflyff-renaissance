@@ -1,0 +1,16 @@
+AddShopItem(0, 49);
+AddShopItem(0, 105);
+AddShopItem(0, 51);
+AddShopItem(0, 107);
+AddShopItem(1, 201);
+AddShopItem(1, 351);
+AddShopItem(1, 203);
+AddShopItem(1, 353);
+AddShopItem(2, 451);
+AddShopItem(2, 401);
+AddShopItem(2, 453);
+AddShopItem(2, 403);
+AddShopItem(3, 251);
+AddShopItem(3, 301);
+AddShopItem(3, 253);
+AddShopItem(3, 303);

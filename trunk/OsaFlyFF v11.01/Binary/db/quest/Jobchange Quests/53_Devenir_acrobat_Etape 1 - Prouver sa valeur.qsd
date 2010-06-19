@@ -1,0 +1,44 @@
+g_dwQuestID = 53
+g_szQuestName = "Etape 1 - Prouver sa valeur"
+g_szNPCName = "MaDa_Hent"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Vous avez choisi de devenir Acrobat. J'espère que vous n'aurez pas à le regretter. Il y a une epreuve simple avant de commencer l'entrainement. Etes vous prêt ?")
+AddEndNPCDialog(g_dwQuestID,1,"Je vais savoir si vous avez fait de votre mieux durant votre entrainement de vagabon.Tuez 10 small airbatt et revenez me voir")
+AddEndNPCDialog(g_dwQuestID,1,"Tuez des small, pas des normaux ou des capitaines...")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous les conditions difficiles pour devenir un acolyte et en devenir un vous même ?")
+AddEndAddItem(g_dwQuestID,1,4803,2) --elytre de flaris
+AddEndAddItem(g_dwQuestID,1,4805,2) -- elytre de darken
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- On va chercher les airbatt
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tuez 10 small airbatts comment voulez vous devenir acrobate si vous ne pouvez pas faire ça ?")
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredMonsterKill(g_dwQuestID,2,20,10)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+
+AddEndNPCDialog(g_dwQuestID,2,"Bien joué ! Vous avez accomplie votre première épreuve !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+
+SetEndChangePenya(g_dwQuestID,3,1500)
+--AddEndAddItem(g_dwQuestID,3,4804,3)

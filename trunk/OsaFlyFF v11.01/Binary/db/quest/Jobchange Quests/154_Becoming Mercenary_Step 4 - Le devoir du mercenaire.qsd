@@ -1,0 +1,54 @@
+g_dwQuestID = 154
+g_szQuestName = "Etape 4 - Dernière étape"
+g_szNPCNameStart = "MaFl_Andy"
+g_szNPCNameEnd = "MaFl_Hyuit"
+
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,153,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici l'heure du test final. Vous allez devoir chasser un nouveau type de monstre volant. Il attaque les gens au sud de Flaris. D'accord ?")
+AddEndNPCDialog(g_dwQuestID,1,"Lorsque ce sera fait, allez voir Hyuit pour finalisé votre formation.")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance et allez vous en maintenant. Je suis quelqu'un d'occupé.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- On n'est pas encore aller chercher les competences
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"*On entend des cris au loin* Vous n'avez pas encore tué ce monstre ? Que faites vous ici ?")
+
+--On rencontre le npc de fin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,751,1) --Il faut tuer babari
+AddEndRequiredItem(g_dwQuestID,2,10388,1) -- il faut le label of technique
+AddEndNPCDialog(g_dwQuestID,2,"Merci beaucoup, Vous nous retirez une épine du pied ! C'était le test final. Il s'agissait du devoir du Mercenaire. Les mercenary sont des expert du close combat. ")
+AddEndNPCDialog(g_dwQuestID,2,"Un mercenaire combat toujours en première ligne et protège les autres durant le combat.Mais même un mercenaire a ses limites. Ne vous surestimez pas.")
+AddEndNPCDialog(g_dwQuestID,2,"Vous vous en sortez mieux si vous combatter à 1 contre 1. Si vous deviez combattre plus d'ennemis, vous devrez vous faire aider.")
+AddEndNPCDialog(g_dwQuestID,2,"Félicitation! Vous avez passé tous les test, vous êtes maintenant un Mercenaire")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+SetEndResetStats(g_dwQuestID,3,1)
+SetEndSetJob(g_dwQuestID,3,"MERCENARY")
+SetEndChangeSkillPoint(g_dwQuestID,3,40)
+AddEndAddItem(g_dwQuestID,3,10211,1)
+AddEndAddItem(g_dwQuestID,3,10434,1)
+AddEndAddItem(g_dwQuestID,3,10208,1)
+AddEndAddItem(g_dwQuestID,3,10209,1)
+

@@ -1,0 +1,33 @@
+AddDrop(2806,330);--MEATSKEWER
+AddDrop(2806,330);--MEATSKEWER
+AddDrop(2806,330);--MEATSKEWER
+AddDrop(2816,200);--II_GEN_FOO_ICE_ORANGEJUIICE 
+AddDrop(2816,200);--II_GEN_FOO_ICE_ORANGEJUIICE 
+
+AddDrop(3215,13); --card elem voltage 0.13%
+AddDrop(3215,25); --card elem voltage 0.25%
+AddDrop(25,150); --hand claw
+AddDrop(27,80); --parmil sword
+AddDrop(22000,5); --sword of boboku
+AddDrop(522,13); --parmil helmet 0.13%
+AddDrop(523,13); --parmil suit
+AddDrop(524,13); --gauntlet
+AddDrop(525,13); --parmil boots
+AddDrop(526,13); --leaf helmet
+AddDrop(527,13); --leaf suit
+AddDrop(528,13); --leaf gauntlet
+AddDrop(529,13); --leaf boots 0.13%
+
+AddDrop(514,50); --iner armor 5%
+AddDrop(516,50); --iner armor
+AddDrop(518,50); --iner armor
+AddDrop(520,50); --iner armor
+
+AddDrop(515,50); --rose armor 5%
+AddDrop(517,50); --rose armor
+AddDrop(519,50); --rose armor
+AddDrop(521,50); --rose armor
+
+
+AddDrop(2952,330); --palin 33%
+AddDrop(2952,330); 

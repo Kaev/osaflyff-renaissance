@@ -1,0 +1,2 @@
+@flyffworldserver
+@pause

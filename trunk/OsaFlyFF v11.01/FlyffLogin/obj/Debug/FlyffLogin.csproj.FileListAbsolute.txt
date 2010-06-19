@@ -1,0 +1,27 @@
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\FlyffLoginServer.exe
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\FlyffLoginServer.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\DotNetVerifier.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\bin\Debug\DotNetVerifier.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\obj\Debug\ResolveAssemblyReference.cache
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\obj\Debug\FlyffLoginServer.exe
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffLogin\obj\Debug\FlyffLoginServer.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\FlyffLoginServer.exe
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\FlyffLoginServer.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\DotNetVerifier.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\bin\Debug\DotNetVerifier.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\obj\Debug\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\obj\Debug\FlyffLoginServer.exe
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffLogin\obj\Debug\FlyffLoginServer.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\FlyffLoginServer.exe
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\FlyffLoginServer.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\DotNetVerifier.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\Shared.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\Shared.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\bin\Debug\DotNetVerifier.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\obj\Debug\FlyffLoginServer.exe
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffLogin\obj\Debug\FlyffLoginServer.pdb

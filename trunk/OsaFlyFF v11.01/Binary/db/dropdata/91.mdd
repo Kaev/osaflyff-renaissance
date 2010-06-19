@@ -1,0 +1,27 @@
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+
+
+AddDrop(515,110); --rose armor
+AddDrop(517,110); --rose armor
+AddDrop(519,110); --rose armor
+AddDrop(521,110); --rose armor
+AddDrop(514,110); --iner armor
+AddDrop(516,110); --iner armor
+AddDrop(518,110); --iner armor
+AddDrop(520,110); --iner armor
+AddDrop(2001,80); --green shield
+
+AddDrop(27,250); --parmil sword
+AddDrop(61,125); --crimson sword
+AddDrop(81,250); --Rodney axe
+AddDrop(83,125); --Morrow axe
+
+
+
+AddDrop(2954,330);--mop
+AddDrop(2954,330);--mop

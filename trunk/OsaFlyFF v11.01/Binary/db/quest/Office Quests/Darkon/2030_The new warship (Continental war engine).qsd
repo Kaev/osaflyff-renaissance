@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Office Quest template   ---------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName = "The new warship (Continental war engine)"
+g_dwQuestID = 2030
+g_szNPCName = "MaDa_Lurif"
+g_dwChgEXP = 1320084
+g_dwChgPenya = 171000
+g_dwReqItemID = 2981
+g_dwReqItemAmount = 40
+g_dwReqMinLVL = 57
+g_dwReqMaxLVL = 62
+g_szReqJobs = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs = {"Wait, %PLAYERNAME%... hmmm... %PLAYERNAME%... Ah, right! You are the one that managed to gather the 40 Knightlers for the sail of the new warship.","Well, now they need 40 Wheeshoes from Nuttywheels to make the ship's wheels in order to make it able to fight on the land as well.","Could you please get them for me?"}
+g_szFinishDialogs = {"Well done. You successfully completed the quest."}
+g_szCannotFinishDialogs = {"You cannot collect them? OK. If you collect them all, come back to me."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,2,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredItem(g_dwQuestID,2,g_dwReqItemID,g_dwReqItemAmount)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,3,g_dwChgEXP)
+AddEndRemoveItem(g_dwQuestID,3,g_dwReqItemID,g_dwReqItemAmount)
+

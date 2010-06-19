@@ -1,0 +1,1 @@
+AddText("¿Tiénes algo raro y precioso? ¿Puedo hecharle un vistazo? ¿¡Qué!? ¿¡No tiénes!? me decepcionas...","START");

@@ -1,0 +1,103 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-- Initialisation des variables
+
+g_dwQuestID 		= 1031
+g_szQuestName 		= "Révélations"
+g_szNPCNameStart    = "MaSa_Gothante"
+g_szNPCNameEnd      = "MaFl_Martinyc" 
+g_dwChgEXP 		    = 2884
+g_dwChgPenya 		= 0
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredItems     = { {18156,1}} -- {itemID,quantité}
+g_RewardItems		= { {18156,1}} -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {"J'ai bien étudié le Livre de Laola, mais je n'aurai jamais pensé que la légende des Clowns était réelle !",
+"Oui, parce que des gens en ont parlé, mais tout le monde sait qu'ils étaient les diables qui ont menacé Madrigal durant la Guerre des Héros.",
+"Bien qu'ils aient créé Madrigal, ils se sont opposés à Rhisis, et ont provoqué sont courroux. Au final c'est Madrigal qui a souffert, ainsi que ses habitants…",
+"Et le Magicien Pourpre était leur sous-fifre, qui a essayé à tout prix de cacher ce qui s'est véritablement passé aux origines de Madrigal.",
+"(retrouvant son çalme) Peux-tu me rendre ce dernier service ?"}
+g_szRefuseQuestDialog = {"Oh, tu as quelque chose d'important à faire ? Reviens une fois que tu auras fini."}
+g_szCannotFinishDialogsStartNPC = {"Il faut absolument que tu ailles révéler tout cela à Martinyc, qu'elle diffuse la vérité dans tout Madrigal. "}
+g_szCannotFinishDialogsEndNPC = {""}
+g_szFinishDialogs 	  = {"Ca faisait longtemps ! As-tu découvert quelque chose finalement ?",
+"Oh… je savais que je pouvais compter sur toi ! Mais qu'as-tu donc découvert ? (lisant le parchemin de Gothante)",
+"Oh !! Les Clowns… Rhisis.. Les trois îles… c'est incroyable ! Tout ce mystère est enfin éclairci ! Je te remercie infiniment, au nom de tous les habitants."
+}
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+AddQuest(g_dwQuestID,g_szQuestName,0,5)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartRequiredQuest(g_dwQuestID,0,1030,5)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+for i = 1 , table.getn(g_szRefuseQuestDialog) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szRefuseQuestDialog[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+
+AddState(g_dwQuestID,3,0)
+SetEndNPC(g_dwQuestID,3,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsStartNPC) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsStartNPC[i])
+end
+for i = 1 , table.getn(g_RewardItems) , 1 do
+   AddEndAddItem(g_dwQuestID,3,g_RewardItems[i][1],g_RewardItems[i][2])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_ADD_QUEST","__OK__",g_dwQuestID,4);
+
+
+AddState(g_dwQuestID,4,0)
+SetStartNPC(g_dwQuestID,4,g_szNPCNameEnd)
+SetEndNPC(g_dwQuestID,4,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,4,g_szQuestName,g_dwQuestID,4)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+   AddEndRequiredItem(g_dwQuestID,4,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,4,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,4,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,5)
+
+AddState(g_dwQuestID,5,14)
+SetEndChangePenya(g_dwQuestID,5,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,5,g_dwChgEXP)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRemoveItem(g_dwQuestID,5,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+--for i = 1 , table.getn(g_RewardItems) , 1 do
+--   AddEndAddItem(g_dwQuestID,5,g_RewardItems[i][1],g_RewardItems[i][2])
+--end
+--AddFinishQuestDialog(g_dwQuestID,5,"Voici la lettre. * vous tend la lettre * ")
+

@@ -1,0 +1,4 @@
+AddBoxItem(10431,100,10); -- scroll of resurrection
+AddBoxItem(10426,100,10); -- scroll of holy
+AddBoxItem(10430,100,10); -- scroll of blessing
+AddBoxItem(10432,100,10); -- scroll of velocity

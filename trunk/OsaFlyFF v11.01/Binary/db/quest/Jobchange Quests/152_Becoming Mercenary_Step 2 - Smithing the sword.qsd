@@ -1,0 +1,47 @@
+g_dwQuestID = 152
+g_szQuestName = "Etape 2 - Forger l'épée"
+g_szNPCNameStart = "MaFl_Mustang"
+g_szNPCNameEnd = "MaFl_andy"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,120)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,151,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitation pour avoir passé le premier test!")
+AddEndNPCDialog(g_dwQuestID,1,"Le deuxième test consiste à réunir tous les ingrédients pour fabriquer l'arme du mercenaire")
+AddEndNPCDialog(g_dwQuestID,1,"Récupérez 5 pierres brillante des airbats et amenez les au maitre des mercenaires")
+AddEndNPCDialog(g_dwQuestID,1,"Le maitre des mercenaire se trouve dans la zone nord de Flaris. Vous êtes toujours motivé ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- Paying 5000 Penya
+AddState(g_dwQuestID,2,0)
+
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tiens Mustang m'a dit que vous m'amèneriez des pierres brillantes, où sont elles ? J'en ai besoin pour la suite.")
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndRequiredItem(g_dwQuestID,2,2950,5)
+AddQuestDrop(g_dwQuestID,2,21,2950,500000000,5) --donne 16% de chance de drop
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Merci d'être venu. Maintenant écoutez attentivement. Un mercenaire peut utiliser 2 type d'armes : l'épée et la hache.")
+AddEndNPCDialog(g_dwQuestID,2,"L'épée est rapide et précise, mais ne cause pas beaucoup de dommage. La hache n'est pas aussi précise et rapide, mais elle fait plus de dégat que l'épée. Il est important de bien savoir les utiliser.")
+AddEndNPCDialog(g_dwQuestID,2,"Avez vous ammené les 5 pierres brillantes que mustang vous a demandé ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_FINISH_QUEST","__NO__",g_dwQuestID,2);
+
+-- Reward: 1xBlink Sword
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,2950,5)
+AddEndAddItem(g_dwQuestID,3,31,1)
+AddFinishQuestDialog(g_dwQuestID,3,"Voici une épée. *vous tend l'arme*")

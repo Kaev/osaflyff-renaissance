@@ -1,0 +1,23 @@
+Dialog texts [German] thanks to TwiLight
+
+
+Comments by TwiLight :
+
+///////////////////////////////////////////////
+
+I removed the Caali NPCs (MaCa_..) - They don't have to be in osAFlyFF ^^
+
+///////////////////////////////////////////////
+
+Following NPCs are official V12 and V13 :
+
+V12 :
+
+- MaFl_CardMaster
+- MaFl_Peach
+- MaFl_SecretRoom_EAST
+- MaDa_SecretRoom_WEST
+
+V13 :
+
+- MaFl_Charlie

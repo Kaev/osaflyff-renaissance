@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2b - Le parchemin"
+g_dwQuestID = 180
+g_szNPCName = "MaFl_Clamb"
+g_szNPCNameEnd = "MaFl_Teshar"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,179,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant il faut rendre ce sceau à son propriétaire. Il s'agit de Teshar.Elle est le leader fervent soldats de Kyon")
+AddEndNPCDialog(g_dwQuestID,1,"La base de Kyon est à l'extérieur de Flarin Est. Vous la trouverez la à bàs.")
+AddEndNPCDialog(g_dwQuestID,1,"Au revoir !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Clamb avant de voir teshar
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Cette relique est très importante et doit être amené à quelqu'un qui peu la mettr en sécurité. Promettez moi de la rapporter à Teshar.")
+--Si on parle à ATA
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18175,1)
+AddEndNPCDialog(g_dwQuestID,2,"Bonjour ! Mon nom est Teshar et je suis la chef des fervents soldats de Kyon. Oh.. L'avez vous trouvé vous même? Comment avez vous fait")
+AddEndNPCDialog(g_dwQuestID,2,"J'essai depuis tellement de temps de les trouver partot dans Flaris, mais sans resultat...")
+AddEndNPCDialog(g_dwQuestID,2,"Oh, vous l'avez trouvé à Saint Morning? Vraiment? C'est pour ça que je ne le trouvait pas... Merci beaucoup quoiqu'il en soit.")
+AddEndNPCDialog(g_dwQuestID,2,"S'il vous plait, acceptez ceci. Ceci est le parchemin du successeur que seul ma famile peut avoir. Je vous l'offre. ")
+AddEndNPCDialog(g_dwQuestID,2,"Ce sera la preuve que je vous ai reconnue comme étant digne d'un successeur")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18175,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

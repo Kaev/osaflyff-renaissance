@@ -1,0 +1,1 @@
+AddText("Desde que se construyo el observatorio, podemos predecir el clima. Debo admitir que estoy muy contento por haberlo construído, aunque me tomó mucho tiempo.","START");

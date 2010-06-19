@@ -1,0 +1,47 @@
+g_dwQuestID = 55
+g_szQuestName = "Etape 3 - Les competences"
+g_szNPCNameStart = "MaDa_Pyre"
+g_szNPCNameEnd = "MaFl_Tucani"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,54,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Avez vous compris le fonctionnement des armes à présent ?")
+AddEndNPCDialog(g_dwQuestID,1,"Dans ce cas passons à l'etape suivante. Vous connaissezles High-Dwarpets, n'est ce pas? Si vous y allez, ils vous apprendrons beaucoup.")
+AddEndNPCDialog(g_dwQuestID,1,"Allez voir Tucani. Il vous en apprendra plus sur les competences d'acrobat. Oh, pour le trouver... ")
+AddEndNPCDialog(g_dwQuestID,1,"Vous pouvez voir le lieu où ils vivent en appuyant sur la touche M. Il est vraiment pratique de savoir se repérer sur une carte")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous cette nouvelle épreuve ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- On n'est pas encore aller chercher les competences
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameStart)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous ne pouvez pas abandonner maintenant.. Celà n'a pas de sens d'abandonner si soudainement")
+--On rencontre le npc de fin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+
+AddEndNPCDialog(g_dwQuestID,2,"C'est pyre qui vous a dit de venir ? Alors écoutez attentivement * sort un livre et feuillette *")
+AddEndNPCDialog(g_dwQuestID,2,"gardez en tête que l'arc consumes des MP et que le Yo-yo consumes des FP. Il y a 6 compétences d'arc et 7 de Yo-yo. De plus il y a 3 compétences communes")
+AddEndNPCDialog(g_dwQuestID,2,"Je dois vous apprendre l'une d'elles,Illusion des ténèbres.C'est une compétence pour se cacher. Vous pouvez disparaitre au yeux des gens avec ceci.")
+AddEndNPCDialog(g_dwQuestID,2,"ça semble cool n'est ce pas ? Mais faites attention car si jamais vous attaquez ou utilisez une autre competence celà ne marchera plus. retenez le !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,1500)
+

@@ -1,0 +1,1 @@
+AddText("Nosotros, los High Dwarpets, somos diferentes de los Dwarpets normales. ¡Nunca nos compares con ellos!","START");

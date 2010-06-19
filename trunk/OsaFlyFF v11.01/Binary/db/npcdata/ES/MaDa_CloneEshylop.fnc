@@ -1,0 +1,1 @@
+AddText("En este lugar, nunca bajes la guardia o no vivirás para contarlo. Recuerda eso.","START");

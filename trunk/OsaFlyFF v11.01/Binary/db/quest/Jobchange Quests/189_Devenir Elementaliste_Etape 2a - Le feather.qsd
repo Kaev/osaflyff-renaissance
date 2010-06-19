@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2 - Le successeur"
+g_dwQuestID = 189
+g_szNPCName = "MaDa_Horison"
+g_szNPCName2 = "MaDa_Lobiet"
+g_szNPCNameEnd = "MaFl_Cuzrill"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MAGE"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,188,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici une lettre de recommandation qui montre que le maitre vous a reconnu comme sucesseur. Veillez sur elle comme sur votre vie. Si vous la perdiez vous n'aurez plus de preuve que je vous ai reconnu.")
+AddEndNPCDialog(g_dwQuestID,1,"Apportez cette lettre à Cuzrill qui est le sage-Elementaliste. Il est à la Fountain of Dead Person au nord des montagne de Leren.")
+AddEndNPCDialog(g_dwQuestID,1,"Oh, avant de rejoindre Cuzrill, vous devrez trouver la plume du pouvoir magique quelque part à Magmient, à Darkon 3, où vive les lua")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on a va parler à lahola
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous devez trouver une plume du pouvoir magique et aller parler à Cuzrill.")
+
+SetEndNPC(g_dwQuestID,2,g_szNPCName2)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Vous cherchez une plume du pouvoir magique? ça tombe bien je viens d'en trouver une.")
+AddEndNPCDialog(g_dwQuestID,2,"Vous les voulez ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+--On va parler à Cuzrill
+AddState(g_dwQuestID,3,0)
+AddStartAddItem(g_dwQuestID,3,18179,1)
+SetStartNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddStartNPCDialog(g_dwQuestID,3,"Je suis aussi intelligent que le prêtre Elementaliste. Peut etre même plus intelligent qu'elle. Mais les gens ne le reconnaissent pas, parce qu'ils sont jaloux")
+
+SetEndNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddEndRequiredItem(g_dwQuestID,3,18179,1)
+AddEndNPCDialog(g_dwQuestID,3,"Vous l'avez trouvé ! Ha ha ha. C'est l'outil magique mystérieux que Lillip a fait avec des plumes de Luia.Celà double la puissance magique.")
+AddEndNPCDialog(g_dwQuestID,3,"Vous voyez? J'en connais un rayon, hein ? Vous avez vraiment fait du bon travail. Je sais qu'il a dû être difficile à trouver.")
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+

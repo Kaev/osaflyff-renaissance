@@ -1,0 +1,3 @@
+AddBoxItem(10207,100,10); -- refresh holder
+AddBoxItem(10210,100,3); -- grilled eel
+AddBoxItem(10218,100,3); -- activation

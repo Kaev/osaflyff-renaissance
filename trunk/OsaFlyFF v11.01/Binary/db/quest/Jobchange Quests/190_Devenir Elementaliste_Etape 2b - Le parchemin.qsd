@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2b - Le parchemin"
+g_dwQuestID = 190
+g_szNPCName = "MaFl_Cuzrill"
+g_szNPCNameEnd = "MaSa_Parine"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MAGE"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,189,4)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant permettez moi de vous dire ce que vous devez en faire. Amenez la plume à Parine qui est à la Station de Saint Morning")
+AddEndNPCDialog(g_dwQuestID,1,"Au revoir !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Clamb avant de voir teshar
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Hey, Pourquoi rendez vous les choses si difficile? C'est une relic de grande valeur, donc il faut que vous la livriez. Ne me la ramenez pas à moi !")
+--Si on parle à ATA
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18179,1)
+AddEndNPCDialog(g_dwQuestID,2,"Je suis une descendante de Lillip. Pour le moment, Tina m'apprend comment diriger la station Station. Mais au fait, que me voulez vous?")
+AddEndNPCDialog(g_dwQuestID,2,"Oh mais... C'est, c'est... C'est la relique que je cherche depuis si longtemps. Ho ho ho! Merci beaucoup!")
+AddEndNPCDialog(g_dwQuestID,2,"Oh, je ne savais pas qu'il était si bien caché. Permettez moi de vous offrir quelque chose en échange.")
+AddEndNPCDialog(g_dwQuestID,2,"S'il vous plait, acceptez ceci. Ceci est le parchemin du successeur que seul ma famile peut avoir. Je vous l'offre. ")
+AddEndNPCDialog(g_dwQuestID,2,"Ce sera la preuve que je vous ai reconnue comme étant digne d'un successeur")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18179,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

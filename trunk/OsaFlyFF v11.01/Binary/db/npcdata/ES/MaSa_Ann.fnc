@@ -1,0 +1,11 @@
+AddText("Hola, ¿Cómo puedo ayudarte?","START");
+AddLink( "Introducción", "Introducción");
+AddLink( "Sobre este lugar","Sobre");
+AddLink( "Compras","Compras");
+AddLink( "Muertes","Muertes");
+AddLink( "Adiós","STOP");
+AddText( "Hasta luego","STOP"));
+AddText("Si tu vida (HP) llega a Cero , te mueres. Asegurate de prestarle atención todo el tiempo. Si mueres, puedes ser revivido por el Lodestar y regresar a la ciudad.Si eliges Lodelight serás llevado y revivído allí.","Muertes");
+AddText("Hay varios mercados en la ciudad. Donde sea que hay un edificio especial, vas a encontrar gente vendiendo lo que manufacturaron. Cada mercado vende cosas diferentes, ¡así que visitalos todos!.Asegurate de comprar comida suficiente antes de dejar la ciudad, especialmente si te vas por mucho tiempo.","Compras");
+AddText("Esto es Saint Morning, la ciudad de la santa mañana, a pesar de esto, hay muchos monstruos fuera de las paredes...Sientete libre de correr por ahí y juntar toda la información que quieres. Es un buen momento para conocer a todos los mercaderes y prepararte para tus aventuras","Sobre");
+AddText("Me llamo Ann Peltrot y estoy a cargo de guiar a Saint Morning y administrar el Garden of Rhisis.","Introducción");

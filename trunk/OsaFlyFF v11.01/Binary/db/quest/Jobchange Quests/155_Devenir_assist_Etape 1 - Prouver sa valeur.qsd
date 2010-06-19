@@ -1,0 +1,44 @@
+g_dwQuestID = 155
+g_szQuestName = "Etape 1 - Prouver sa valeur"
+g_szNPCName = "MaFl_Elic"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Je suis sure que vous avez fait le bon choix, mais gardez à l'esprit que ça ne va pas être facile.Je vais devoir vous faire passer une épreuve. Etes vous prêt ?")
+AddEndNPCDialog(g_dwQuestID,1,"Je vais voir avec quelle rapidité et quelle précision, en prenant compte le temps que vous mettez, pour tester vos capacités de vagabon.")
+AddEndNPCDialog(g_dwQuestID,1,"Tout d'abord vous devez tuer 10 small airbatts pour me monter votre valeur au combat. ")
+AddEndNPCDialog(g_dwQuestID,1,"Lorsque vous les aurez tué, revenez me voir.")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous les conditions difficiles pour devenir un acolyte et en devenir un vous même ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- On va chercher les airbatt
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous avez trop peur pour accomplir ce test ? Je n'ai pas besoin de poule mouillée allez vous en...")
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredMonsterKill(g_dwQuestID,2,20,10)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+
+AddEndNPCDialog(g_dwQuestID,2,"Bien joué ! Mais il vous reste encore pas mal de chose à faire. Devenir un acolyte n'est pas aussi facile. ")
+AddEndNPCDialog(g_dwQuestID,2,"Mais je suis sure que vous êtes prêt. Bon courage !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+
+SetEndChangePenya(g_dwQuestID,3,1500)
+--AddEndAddItem(g_dwQuestID,3,4804,3)

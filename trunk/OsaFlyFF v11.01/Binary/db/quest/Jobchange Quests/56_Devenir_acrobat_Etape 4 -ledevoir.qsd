@@ -1,0 +1,55 @@
+g_dwQuestID = 56
+g_szQuestName = "Etape 4 - Dernière étape"
+g_szNPCNameStart = "MaFl_Tucani"
+g_szNPCNameEnd = "MaDa_Tailer"
+
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,55,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndAddItem(g_dwQuestID,1,10388,1) -- on donne le label of technique
+AddEndNPCDialog(g_dwQuestID,1,"Donc que pensez vous des excellentes compétences de l'acrobate ? Elles sont super non ?")
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant parlons de la prochaine étape. Ily a une créature nommé Shuraiture qui nous pose soucis. Il est prêt de l'entrée de Darken. Oh, man...mon dos me fait mal....")
+AddEndNPCDialog(g_dwQuestID,1,"Ah, ça va mieux. Donc cette créature dérange les villageois de darken ces derniers temps. Tuez le et aller voir l'entraineur Tailer. Tailer sera ravi.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- On n'est pas encore aller chercher les competences
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Laissez moi tranquil, j'ai d'autres préoccupations...Satané shuriature...")
+
+--On rencontre le npc de fin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,687,1) -- Il faut tuer un shuriature
+AddEndRequiredItem(g_dwQuestID,2,10388,1) -- il faut le label of technique
+AddEndNPCDialog(g_dwQuestID,2,"Oh cette note.. et vous avez tué Shuraiture... Vous avez été super. Merci! Je vais maintenant vous récompensé pour avoir passé la dernière épreuve. ")
+AddEndNPCDialog(g_dwQuestID,2,"Les acrobates peuvent attaquer de près, de portée moyenne et de longue portée. De plus les acrobates êuvent attirer un ennemie distant jusqu'à eux.")
+AddEndNPCDialog(g_dwQuestID,2,"Il n'y a pas de job comme l'Acrobate, qui a de nombreuses possibilitées. J'espère que vous avez bien compris la portée de ce travail et que vous ne le regretterez pas")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+SetEndResetStats(g_dwQuestID,3,1)
+SetEndSetJob(g_dwQuestID,3,"ACROBAT")
+SetEndChangeSkillPoint(g_dwQuestID,3,50)
+AddEndAddItem(g_dwQuestID,3,10434,1)
+AddEndAddItem(g_dwQuestID,3,10211,1)
+AddEndAddItem(g_dwQuestID,3,10208,1)
+AddEndAddItem(g_dwQuestID,3,10209,1)
+AddEndRemoveItem(g_dwQuestID,3,10388,1) -- on retire le label of technique
+

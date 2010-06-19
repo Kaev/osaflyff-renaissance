@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 4 - Le gardien"
+g_dwQuestID = 167
+g_szNPCName = "MaDa_Lobiet"
+g_szNPCNameEnd = "MaDa_Boneper"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,166,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici le symbole du héro. Il ne vous reste maintenant plus qu'une tâche à accomplir pour être réellement reconnu en tant que successeur du hero.")
+AddEndNPCDialog(g_dwQuestID,1,"Il y a un lieu appelé Chambre du Gardien. Il se trouve à Guardiane. Cet à cet endroit,que la volonté des héros a été préservée.")
+AddEndNPCDialog(g_dwQuestID,1,"Combattez le gardien des esprits, le gardien Venel, et prenez son coeur. Son coeur sera la preuve de votre victoire.")
+AddEndNPCDialog(g_dwQuestID,1,"Apportez ce coeur à Sencyrit qui est le gariden Chevalier au sud de guardiane. Bonne chance successeur")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Sencyrit avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartAddItem(g_dwQuestID,2,10249,1) --on donne la mark of hero
+AddQuestDrop(g_dwQuestID,2,663,10254,3000000000,1) --on permet de droper un coeur de venel à 100%
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Seul ceux qui sont reconnue comme des successeur peuvent venir ici. Allez vous en !")
+
+
+--Si on parle à Jeperdy apres
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,663,1) --il faut tuer le venel
+AddEndRequiredItem(g_dwQuestID,2,10249,1) --il faut la mark of hero
+AddEndRequiredItem(g_dwQuestID,2,10254,1) -- il faut le coeur du venel
+AddEndNPCDialog(g_dwQuestID,2,"Bienvenue, successeur. Vous avez passé le dernier test! Je vous déclare Successeur du Héro Chevalier !!")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+SetEndSetJob(g_dwQuestID,3,"KNIGHT")
+SetEndChangeSkillPoint(g_dwQuestID,3,80)
+AddEndRemoveItem(g_dwQuestID,3,10249,1)
+AddEndRemoveItem(g_dwQuestID,3,10254,1)
+AddEndRemoveItem(g_dwQuestID,3,10389,1)
+

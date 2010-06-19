@@ -1,0 +1,1 @@
+AddText("Todavía no. No estas cualificado para el reto.";"START");

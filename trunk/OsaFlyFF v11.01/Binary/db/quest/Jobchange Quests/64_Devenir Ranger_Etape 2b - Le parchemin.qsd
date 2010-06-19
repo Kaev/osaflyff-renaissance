@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2b - Le parchemin"
+g_dwQuestID = 64
+g_szNPCName = "MaFl_Kimel"
+g_szNPCNameEnd = "MaDa_Liekyen"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ACROBAT"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,63,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Merci beaucoup de m'avoir rapporté la lettre. Il y a quelqu'un que j'aimerais que vous rencontriez.")
+AddEndNPCDialog(g_dwQuestID,1,"Allez voir le High-Dwarpet MaDa_Liekyen et remettez lui cette lettre. Il se trouve à l'entrée nord-est du village de Darkon.")
+AddEndNPCDialog(g_dwQuestID,1,"Votre rêve peut devenir réalité si vous le voulez suffisamment fort. Vous pouvez devenir un Ranger si vous le souhaitez vraiment !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on parle a Clamb avant de voir Lienkael
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Allez voir le High-Dwarpet Lienkael à Darken et remettez lui cette lettre")
+--Si on parle à ATA
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,10392,1)--il faut la lettre
+AddEndNPCDialog(g_dwQuestID,2,"Oh! C'est la lettre! Ha ha ha. Merci! Actuellement, je suis un employé de la famille Hynan. Je veille au bien être de la famille Hynan.")
+AddEndNPCDialog(g_dwQuestID,2,"Celà fait longtemps que nous recherchions cette lettre. Heureusement que vous êtes là! J'aimerais vous récompenser.")
+AddEndNPCDialog(g_dwQuestID,2,"Tenez. Prenez en soin car c'est très précieux")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,10392,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

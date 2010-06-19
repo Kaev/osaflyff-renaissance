@@ -1,0 +1,1 @@
+AddText("i haven't done this dialog please tell it to developper ^^","START");

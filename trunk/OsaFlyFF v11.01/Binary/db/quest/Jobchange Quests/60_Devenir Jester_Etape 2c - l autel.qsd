@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2c - L'Autel"
+g_dwQuestID = 60
+g_szNPCName = "MaSa_Troupemember5"
+g_szNPCNameEnd = "MaDa_Homeit"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ACROBAT"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,59,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Ce parchemin prouve que vous méritez d'être un successeur du héro. Allez voir le prêtre jester et apportez le lui.")
+AddEndNPCDialog(g_dwQuestID,1,"Le prêtre jester se trouve à l'autel des jester Magmien à Darkon3. Il vous reconnaitra comme successeur du héro si vous le lui apportez")
+AddEndNPCDialog(g_dwQuestID,1,"Oh. il y a quelque chose que vous devez faire avant de rencontrer le prêtre. Les trésors de l'autel des Jester sont les joyaux des Heros. L'un d'eux a été volé il y a quelque jours...")
+AddEndNPCDialog(g_dwQuestID,1,"Les joyaux protègent l'ame des héros, mais ils ne fonctionneront pas s'il en manque un. Le prêtre a dit que Sisif trainait dans les environs de l'autel peu auparavant")
+AddEndNPCDialog(g_dwQuestID,1,"essayez de voir si elle ne l'aurais pas.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Heedan avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddQuestDrop(g_dwQuestID,2,689,10245,3000000000,1) --100% de chance de droper la pierre des heros
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Y a t-il une raison pour que vous soyiez ici ?Je ne pense pas...")
+
+
+--Si on parle à Jeperdy apres
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,10391,1) --il faut le parchemin
+AddEndRequiredMonsterKill(g_dwQuestID,2,689,1) --il faut tuer Sisif
+
+AddEndNPCDialog(g_dwQuestID,2,"C'est le sceau de Kerenen et le joyaux des Heros. Ainsi Sisif était bien le voleur. Merci beaucoup.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,10245,1)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+

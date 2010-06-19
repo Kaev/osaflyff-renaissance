@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName 		= "..."
+g_dwQuestID 		= 1337
+g_szNPCNameStart	= "..."
+g_szNPCNameEnd		= g_szNPCNameStart
+g_dwChgEXP 		= 1337
+g_dwChgPenya 		= 1337
+g_dwReqMinLVL 		= 1337
+g_dwReqMaxLVL 		= 1337
+g_RewardItems		= { {1337,1},{1338,2},{1339,3},... } -- {itemID,amount}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,amount,monid,probability(3000000000=100%)}
+g_szReqJobs 		= {"MERCENARY","MAGICIAN","ASSIST","ACROBAT"}
+g_szAddDialogs 		= {"bla!"}
+g_szFinishDialogs 	= {"blubb!"}
+g_szCannotFinishDialogs = {"pfff...."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameStart)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,2,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+for i = 1 , table.getn(g_QuestItems) , 1 do
+	AddEndRequiredItem(g_dwQuestID,2,g_QuestItems[i][1],g_QuestItems[i][2])
+	AddQuestDrop(g_dwQuestID,2,g_QuestItems[i][3],g_QuestItems[i][1],g_QuestItems[i][4],g_QuestItems[i][2])
+end
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+for i = 1 , table.getn(g_QuestItems) , 1 do
+	AddEndRemoveItem(g_dwQuestID,3,g_QuestItems[i][1],g_QuestItems[i][2])
+end
+for i = 1 , table.getn(g_RewardItems) , 1 do
+	AddEndAddItem(g_dwQuestID,3,g_RewardItems[i][1],g_RewardItems[i][2])
+end
+SetEndChangePenya(g_dwQuestID,3,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,3,g_dwChgEXP)

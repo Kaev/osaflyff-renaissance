@@ -1,0 +1,1 @@
+AddText("Je n'ai pas encore fait ce dialogue merci de le signaler",START");

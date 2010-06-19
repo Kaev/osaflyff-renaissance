@@ -1,0 +1,1 @@
+AddText("Do you have something rare and precious? Could I take a look? What? You do not? I am sorry to hear that.","START");

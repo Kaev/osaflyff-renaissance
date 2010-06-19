@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 3 - Le successeur"
+g_dwQuestID = 175
+g_szNPCName = "MaFl_Domek"
+g_szNPCNameEnd = "MaFl_Segho"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,174,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant il faut remettre cette relique à son propriétaire. Son premier propriétaire était le Roentel, mais désormais une personne s'occupe des reliques du Héros des Moines.")
+AddEndNPCDialog(g_dwQuestID,1,"Son nom est Regho, il est de la famille Pesin qui dirige le hall des arts militaires de Roentel. Mais Regho est aussi un passionné d'alpinisme, et je crois qu'il ne se trouve pas au Hall en ce moment…")
+AddEndNPCDialog(g_dwQuestID,1,"J'ai entendu dû dire qu'il était parti gravir les Montagnes nord de Leren, à Flaris. Il te faudra sûrement escalader la montagne également si tu souhaites le rejoindre.")
+AddEndNPCDialog(g_dwQuestID,1,"Soit vigilant, le chemin sera peut-être périlleux.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Domek
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tu n'as pas idée de la valeur de cette relique. Il est vraiment important de la rapporter à Regho.")
+
+--Si on parle à Segho
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18173,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh... C'est le... Merci infiniment ! Je le cherchais depuis des années…")
+AddEndNPCDialog(g_dwQuestID,2,"J'apprécie énormément ce que tu as fait ! Je commençais à désespérer de retrouver un jour ce document.Oh, voici quelque chose pour te récompenser de tes efforts. ")
+AddEndNPCDialog(g_dwQuestID,2,"Ceci est le Parchemin que seuls les descendants de ma famille peuvent avoir. Il t'appartient désormais.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Segho
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18173,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 4 - Le successeur"
+g_dwQuestID = 176
+g_szNPCName = "MaFl_Segho"
+g_szNPCNameEnd = "MaDa_Fera"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,175,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Tu approches de ton but… et la fin de ton apprentissage se passera à Darkon 3 ! Là-bas, tu trouveras l'Autel où siège Fera, la Doyenne des Moines.")
+AddEndNPCDialog(g_dwQuestID,1,"Mais avant de te présenter à Fera… Il y a une mission que tu dois accomplir. Fera recherche une relique perdue : le Mantra de Roentel qui permet d'apprendre la compétence légendaire de Roentel.")
+AddEndNPCDialog(g_dwQuestID,1,"Hors on dit que les Steamwalkers de Darkon 1 seraient parvenu à le retrouver, il faut vraiment le retrouver au plus vite et le rapporter à Fera !")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance, futur Moine !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Fera avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Le Mantra de Roentel peut s'avérer extrêmement dangereux si il est entre de mauvaises mains. Il est vraiment important de le retrouver...")
+
+
+--Si on parle à Fera apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,108,1)
+AddQuestDrop(g_dwQuestID,2,108,18174,900000000,1)
+AddEndRequiredItem(g_dwQuestID,2,18174,1)
+AddEndNPCDialog(g_dwQuestID,2,"Tu as retrouvé le Mantra de Roentel ! On dit que seul Roentel pouvait l'utiliser, mais qui sait… Quoiqu'il en soit, merci infiniment ! Je ferais de mon mieux pour le garder en sécurité.")
+AddEndNPCDialog(g_dwQuestID,2,"En ce lieu nous protégeons les âmes des Héros. Mais quelle est la raison de ta venue ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Fera
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18174,8)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+AddEndAddItem(g_dwQuestID,3,10253,1)

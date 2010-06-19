@@ -1,0 +1,25 @@
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2816,200);--II_GEN_FOO_ICE_ORANGEJUIICE
+AddDrop(2816,200);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+AddDrop(3221,13); --card elem desert 0.13%
+AddDrop(3221,25); --card elem desert 0.25%
+
+AddDrop(515,110); --rose armor
+AddDrop(517,110); --rose armor
+AddDrop(519,110); --rose armor
+AddDrop(521,110); --rose armor
+AddDrop(514,110); --iner armor
+AddDrop(516,110); --iner armor
+AddDrop(518,110); --iner armor
+AddDrop(520,110); --iner armor
+AddDrop(2001,80); --green shield
+AddDrop(27,80); --parmil sword
+
+AddDrop(2035,1); --ori/sunstone 0.1%
+AddDrop(2036,1); --moon stone 0.1%
+
+AddDrop(2953,300);--chupim
+AddDrop(2953,300);--chupim

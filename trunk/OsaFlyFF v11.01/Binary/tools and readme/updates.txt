@@ -1,0 +1,176 @@
+--------------------------------------------------------------------------------------------
+V11.01 Updates :
+--------------------------------------------------------------------------------------------
+
+1. quelques changements dans les commandes MJ (/inv - /noinv - retrait de .hide et .show)
+2. retrait temporaire du système de quête qui provoquai une erreur au chargement du world
+3. ajout du système de collecte.
+4. ajout de nouvelles potion
+5. correction du bug lors de la mort d'un mover via une compétence
+6. Ajout du système d'upgrade des collecteur
+
+
+
+/------------------------------
+----------- OLD UDPATES -------
+------------------------------/
+
+
+-------------------------------------------------------------------------------------------------
+V12 Updates :
+--------------------------------------------------------------------------------------------
+
+1. Add some item usage : Perrin,Firework/Firebomb/crackers/blinkwings/restat/reskill
+2. Add scroll : of forgive, holy scroll, reversion, reductionA&B/awake
+3. Add thai language (but need npcdata file translated)
+4. Party system started but not finished (actually party will not level up)
+5. NPC Option added : Revert Item/Remove element/Create jewel/create food
+6. Add card in socket
+7. Item bonus/set bonus done
+8. Bank system work now
+9. Revival region are now defined in database and fixed from last time
+10. cs-set box added
+11. NPC Dialog file rewritten, now click on link give you text for that link !
+12. Optimisation for memory usage etc...
+
+
+-------------------------------------------------------------------------------------------------
+V11 Updates :
+--------------------------------------------------------------------------------------------
+
+1. //
+2. functions renamed, most of them
+3. new class with static functions: WorldHelper. use it to get all kind of things you need to get such as NPC by mover ID, player by mover ID etc.
+4. wasd movement
+5. movement formula fixed (contribution of Caali)
+6. new item system, almost flawless (contribution of Caali)
+7. fixed bug when players could still level up after level 15 vagrant & level 60 first job
+8. added some documentations to source code & comments
+9. uncommented back a code snippet @ destruct()
+10. a little bit optimizations but no more than that
+11. did I mention wasd movement?
+12. fixed revision 10 beta crash with npc shops
+13. added revival regions (requires new table)
+14. completely removed player shops. need a new system for this which is next on the list
+15.Resurrection skill add
+16.Spanish dialog file add (flyff_language = 3) (we haven't actually flyff_spawn_npc for spanish version)
+17.French dialog are now all translated
+
+-------------------------------------------------------------------------------------------------
+V10 Updates :
+--------------------------------------------------------------------------------------------
+we have passed V10 to V11 directly
+
+-------------------------------------------------------------------------------------------------
+V9 Updates :
+--------------------------------------------------------------------------------------------
+1-Fixed mobs attacking
+2-Max level is set to 120 & 99% - can't go beyond that
+3-Heroe's experience points stay 0 forever
+4-Converted Arraylist into List<T>
+5-Fixed some bugs and disconnects
+6-Binary compiled with full debugging information; stack traces are more helpful now
+
+-------------------------------------------------------------------------------------------------
+V8 Updates :
+--------------------------------------------------------------------------------------------
+
+Add 2 new feature : 
+- Scroll of Name Change (10424)
+- Scroll of Class Change (10425)
+
+- Add Item usage system and box extract lua system
+- Some item in flyff_data_item fixed
+
+- Add flyff_spawns_npc translated in german by MazeXD (thanks)
+- Add Exp/Drop/Penya Rates by funkynico
+- Drop system implemented (mob airbat until lawolf have their dropdata) thanks to nico
+It's not perfect but it work
+ -update database and add V13 mob in flyff_data_mobs
+- Mob vs Player attack implemented BUT : 1/formula are bad 2/there some bug to fix (lag/position of mob etc.)
+- Add flyff_spawns_npc translated in german in db\mysql\ thanks to 
+- GMCommand have been updated to V3.0
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+V7 Updates :
+-------------------------------------------------------------------------------------------------------
+arena teleport by npc done by divinepunition
+new ban system by funkynico
+new pang system by funckynico (pang parameters are now in a .ini file)
+new system to show memory usage by funkynico
+fix database and query by funkynico
+NPCdata (english version) and shopdata updated
+Upgrade system work with weapon/armor/jewelry/elemental card. Scroll protection system include in it for futur premium item system
+Fix sell item price by Aldimaster (correct me if i'm wrong ?)
+DATABASE UPDATED !!
+
+
+about new GM command :
+--------------------
+
+Changelog 2.2
+
+Format: command ( howto use )
+- Added command: .ak / .aroundkill or /aroundkill ( .ak 5000 (you dont have to pass a parameter, first parameter is range, 5000 is almost whole world))
+- Added command: .debugitems2 ( .debugitems2 (it will get all your items and show in console window, for debugging purposes!) )
+- Added command: .invisible or /invisible ( .invisible, this command SWAP between hide/show and client have this gm command so yeah, good to implement )
+
+
+Changelog 2.1
+
+- Added owner check for authority levels. (Blocked = 0, Normal = 70, GM = 80, Admin = 100, Owner = 120)
+- Fixed bugs in search item & monster!
+
+Format: command ( howto use )
+- Added command: .sa | .setauthority ( .sa Nicco 120 / If you pass another parameter and it's 0 that means it wont disconnect you! (.sa Nicco 120 0))
+
+Changelog 2.0
+
+- Added ability for different commands for Users / GM's / Admins depending on authority.
+
+Format: command ( howto use )
+- Added command: .heal ( .heal Nicco / Doesn't need a parameter. )
+
+Changelog 1.1
+
+Format: command ( howto use )
+- Added command: .maxskills ( .maxskills )
+
+Changelog 1.0
+
+Format: command ( howto use )
+- Added command: /ci | /createitem ( /ci "[item_name]" [optional quantity] )
+- Added command: /summon ( /summon "[monster name]" [optional amount] )
+- Added command: .im ( .im [msg_id] )
+- Added command: .find | .search ( .find/.search [type] [search_string] )
+- Added command: .in | .infnotice ( .in/.infnotice [notice message] )
+- Added command: .serverstats | .stats | .ss ( .ss )
+- Added command: .closeshop ( .closeshop Nicco )
+
+
+
+
+------------------------------------------------------------------------------------------------
+V6 :
+-----------------------------------------------------------------------------------------------
+    *  Add international system now put dialog in npcdata/EN or FR or DE. Then in database for each player you can specify in flyff_lan the langage of the player (0=EN, 1=FR, 2=DE)
+    * New database (add language column and flyff_data_skills table)
+    * Add an sql to put flyff_spwan_npc with english version for their speech (thanks to psycro from ragezone)
+    * Add GM Log (thanks to R3fl3x and imortal )
+    * correct a little bug in moverAttribut file
+    * correct a bug in threads that don't allow it save currenthp and mana
+    * add flyff_data_skill table and make it put in memory when server start
+    * Optimize buff code
+    * Mana is decrease whan using a skill
+    * Skill are divised into group actually just buff and heal work, i'm working on resurrection(divinepunition)
+    * Add dialog in english for npc (we need to put a function to link button and text, not done yet but i will correct it later) (thanks to psycro from ragezone)
+    * Add shop like in eFlyff (thanks to psycro)

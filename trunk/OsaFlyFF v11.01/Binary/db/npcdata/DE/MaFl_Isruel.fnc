@@ -1,0 +1,18 @@
+AddText("Hallo, kann ich dir helfen?","START");
+AddLink( "Vorstellung","Vorstellung");
+AddLink( "Ort","Ort");
+AddLink( "Kauf","Kauf");
+AddLink( "Tod","Tod");
+AddLink( "Tschüss", "STOP");
+AddText( "Mein Name ist Isruel Trinity. Ich mag Flaris.","Vorstellung");
+AddText( "Vielleicht hast du andere Helferinnen gesehen, die mir ähnlich sehen.","Vorstellung");
+AddText( "Du scheinst verwirrt zu sein. Mach dir nichts daraus, denn wir sind es manchmal auch. Ich wünsche dir einen angenehmen Tag.","Vorstellung");
+AddText( "Es herrscht immer Frühling in Flaris. Aber sei vorsichtig. Es gibt viele Monster ausserhalb der Stadt.","Ort");
+AddText( "Bevor du die Stadt verlässt, solltest du mit vielen Leuten sprechen. Besonders mit denen, die ein goldenes Ausrufezeichen über ihrem Kopf haben.","Ort");
+AddText( "Es gibt eine Vielzahl an Geschäften in der Stadt. Wo immer ein spezielles Gebäude steht, kannst du Leute finden die ihre selbstgemachten Waren verkaufen.","Kauf");
+AddText( "Jedes Geschäft verkauft unterschiedliche Waren. Aber schau dich zuerst sorgfältig um, bevor du auf irgendwelche Betrügereien hereinfällst.","Kauf");
+AddText( "Bitte versichere dich, dass du ausreichend Nahrung, Tränke und Munition mit dir führst. In der Stadt bekommst du alles, was du benötigst.","Kauf");
+AddText( "Wenn deine HP auf 0 sinkt, dann wirst du ohnmächtig. Achte auf die Anzeige, besonders im Kampf.","Tod");
+AddText( "Aber sei unbesorgt wenn du ohnmächtig wirst. Es gibt eine Maschine für die Wiederbelebung in Flaris namens Lodestar.","Tod");
+AddText( "Sie bringt dich in die Stadt und belebt dich wieder.","Tod");
+AddText( "Ich hoffe, du kannst das Abenteuer genießen.","STOP");

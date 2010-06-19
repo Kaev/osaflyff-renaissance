@@ -1,0 +1,17 @@
+bin:AddValue(75,7);
+bin:AddValue(1,1);
+bin:AddValue(3,9);
+bin:AddValue(0,1);
+bin:AddValue(9,7);
+bin:AddValue(0,1);
+bin:AddValue(7,9);
+bin:AddValue(0,1);
+bin:AddValue(2,7);
+bin:AddValue(1,1);
+bin:AddValue(13,9);
+bin:AddValue(0,8);
+
+pak:StartNewMergedPacketLUA(MyMoverID, 0x0140);
+pak:Addbyte(0);
+pak:Addbyte(10);
+pak:Addlong(bin.qword);

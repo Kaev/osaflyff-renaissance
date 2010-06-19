@@ -1,0 +1,95 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_dwQuestID 		= 1028
+g_szQuestName 		= "Parchemins magiques"
+g_szNPCNameStart    = "MaSa_Gothante"
+g_szNPCNameEnd      = "MaSa_Gothante"
+g_dwChgEXP 		    = 3435
+g_dwChgPenya 		= 0
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredItems     = { {18153,1},{18154,1}} -- {itemID,quantité}
+g_RewardItems		= { {18151,1}} -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {
+"J'ai fini de traduire le manuscrit. Il confirme que les trois Autels ont été érigés par le Mage Pourpre.",
+"Apparement ces Autels servent à vouer un culte à quelqu'un, mais…",
+"… mais je manque d'éléments pour rééllement comprendre leur sigification",
+"Il faudrait trouver de nouveaux indices, je sens que la vérité est juste devant nos yeux…",
+"Comme tu t'en doutes, je compte encore sur toi. Je peux te faire confiance ?"
+}
+g_szRefuseQuestDialog = {"La vérité mérite parfois des sacrifices tu sais !"}
+g_szCannotFinishDialogsStartNPC = {"S'il te plaît, pars enquêter aux Autels Pourpres, je suis sûr que tu vas trouver un nouvel indice pour nous guider sur le chemin de la vérité."}
+g_szCannotFinishDialogsEndNPC = {}
+g_szFinishDialogs 	  = {"(surpris) Oh ! Ces parchemins que tu as trouvés renferment un pouvoir magique si grand ! Vraiment impressionnant !",
+"Merci encore ! Cependant je ne suis pas en mesure de manipuler de telles forces… (réfléchissant) Peut-être que…",
+"Oui ! Je ne vois que l'Archimage Laola pour accomplir cela ! Il faut que tu ailles la trouver à Anicenight, à Darkon 3."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+AddQuest(g_dwQuestID,g_szQuestName,0,5)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartRequiredQuest(g_dwQuestID,0,1027,5)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+for i = 1 , table.getn(g_szRefuseQuestDialog) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szRefuseQuestDialog[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+
+AddState(g_dwQuestID,3,0)
+SetEndNPC(g_dwQuestID,3,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsStartNPC) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsStartNPC[i])
+end
+--for i = 1 , table.getn(g_RewardItems) , 1 do
+--   AddEndAddItem(g_dwQuestID,3,g_RewardItems[i][1],g_RewardItems[i][2])
+--end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_ADD_QUEST","__OK__",g_dwQuestID,4);
+
+-- On va voir Hachal à Darkon
+AddState(g_dwQuestID,4,0)
+SetStartNPC(g_dwQuestID,4,g_szNPCNameEnd)
+SetEndNPC(g_dwQuestID,4,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,4,g_szQuestName,g_dwQuestID,4)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+   AddEndRequiredItem(g_dwQuestID,4,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,4,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,4,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,5)
+
+AddState(g_dwQuestID,5,14)
+SetEndChangePenya(g_dwQuestID,5,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,5,g_dwChgEXP)
+--for i = 1 , table.getn(g_RequiredItems) , 1 do
+--	AddEndRemoveItem(g_dwQuestID,5,g_RequiredItems[i][1],g_RequiredItems[i][2])
+--end
+--for i = 1 , table.getn(g_RewardItems) , 1 do
+--   AddEndAddItem(g_dwQuestID,5,g_RewardItems[i][1],g_RewardItems[i][2])
+--end
+--AddFinishQuestDialog(g_dwQuestID,5,"Voici la lettre. * vous tend la lettre * ")
+

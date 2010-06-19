@@ -1,0 +1,6 @@
+AddBoxItem(2908,100,1); --HW
+AddBoxItem(10224,100,1); --Twister
+AddBoxItem(10222,100,1); --Heart
+AddBoxItem(10221,100,1); --Rocket
+AddBoxItem(2905,100,1); --Fireshower
+AddBoxItem(2907,100,1); --Goodbye

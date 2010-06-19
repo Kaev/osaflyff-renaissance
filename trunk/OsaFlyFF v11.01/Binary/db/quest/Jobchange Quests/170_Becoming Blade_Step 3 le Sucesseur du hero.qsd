@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 3 - Le successeur"
+g_dwQuestID = 170
+g_szNPCName = "MaFl_Guabrill"
+g_szNPCNameEnd = "MaFl_Ata"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,169,4)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant il faut rendre ces boucles à leur propriétaire. Le propriétaire original était Heren, mais maintenant il s'agit du chef de la maison des Heren.")
+AddEndNPCDialog(g_dwQuestID,1,"S'il vous plait apportez lui ses boucles d'oreille. Son nom est Ata et il apprend l'astronomie avec son maitre, Noie, à l'observatoire de Flaris.")
+AddEndNPCDialog(g_dwQuestID,1,"La famille de Ata dirigent la maison des Heren depuis des generations. Il était de leur devoir de trouver ces boucles d'oreille, et maintenant ils ont accomplis ce devoir..")
+AddEndNPCDialog(g_dwQuestID,1,"Je ne peux pas m'empecher de sourrire en imaginant la surprise sur le visage de Ata. Ha ha ha")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Guabrill
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous devez trouver les boucle d'oreille et aller parler à guabrill.")
+--Si on parle à ATA
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,18171,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh, c'est... Oh merci! Merci vraiment! Ha ha ha! Je vais enfin pouvoir rentrer chez moi! Ha ha ha!!")
+AddEndNPCDialog(g_dwQuestID,2,"J'apprécie vraiment ce que vous avez fait! Notre devoir est enfin terminé. Excusez moi, je suis tellement excité.")
+AddEndNPCDialog(g_dwQuestID,2,"Voici le parchemin que seul un descendant de notre famille peut posséder. Je vous l'offre. Il sera la preuve qui montre que je vous reconnais en tant que successeur.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18171,1)
+AddEndAddItem(g_dwQuestID,3,10391,1)

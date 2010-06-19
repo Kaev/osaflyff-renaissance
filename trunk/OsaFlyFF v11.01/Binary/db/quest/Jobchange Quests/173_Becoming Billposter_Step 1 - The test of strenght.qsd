@@ -1,0 +1,50 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 1 - L'épreuve de la force"
+g_dwQuestID = 173
+g_szNPCName = "MaDa_Ride"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Tu aimerais succéder à Roentel, le Héros des Moines ? Ce n'est pas une tâche facile, mais je pense que tu en es capable...")
+AddEndNPCDialog(g_dwQuestID,1,"Je vais te faire passer une première épreuve pour me prouver que tu es bien digne de devenir Moine. Il s'agit de tester ton aptitude au combat.")
+AddEndNPCDialog(g_dwQuestID,1,"Ma requête est assez simple : débarasse-toi 20 Drillers à KhipRa, Darkon 1. Pas des Jeunes ou des Capitaines Drillers, juste des Drillers.")
+AddEndNPCDialog(g_dwQuestID,1,"Si tu ne peux pas à accomplir cela, il vaut mieux que tu oublies l'idée de devenir un Moine.")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous cette épreuve ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,1);
+
+-- Si on a pas encore tué les 20 drillers
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tuer 20 Drillers à KhipRa, Darkon 1 et retourner voir le Maître des Moines, Ride.")
+
+--Après avoir tué 20 drillers
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredMonsterKill(g_dwQuestID,2,505,20)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Excellent travail, je savais que tu serais à la hauteur !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+AddEndAddItem(g_dwQuestID,3,10389,1)

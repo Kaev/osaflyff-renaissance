@@ -1,0 +1,19 @@
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+AddDrop(25,80); --hand claw
+AddDrop(80,80); --Rodney axe
+
+
+AddDrop(515,80); --rose armor
+AddDrop(517,80); --rose armor
+AddDrop(519,80); --rose armor
+AddDrop(521,80); --rose armor
+AddDrop(514,80); --iner armor
+AddDrop(516,80); --iner armor
+AddDrop(518,80); --iner armor
+AddDrop(520,80); --iner armor
+
+AddDrop(2001,50); --green shield
+
+AddDrop(2974,66);--peakyrind

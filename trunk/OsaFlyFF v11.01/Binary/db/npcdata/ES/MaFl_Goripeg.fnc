@@ -1,0 +1,1 @@
+AddText("Los humanos nos desprecian porque solíamos hacer su trabajo. Sin embargo, tan inteligente como los seres humanos pueden ser, somos mucho más fuertes. No somos, de ninguna manera, inferiores. Entiendes? ","START");

@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2 - Le successeur"
+g_dwQuestID = 169
+g_szNPCName = "MaDa_Corel"
+g_szNPCName2 = "MaDa_Laloa"
+g_szNPCNameEnd = "MaFl_Guabrill"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,168,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici une lettre de recommandation qui montre que le maitre vous a reconnu comme sucesseur. Veillez sur elle comme sur votre vie. Si vous la perdiez vous n'aurez plus de preuve que je vous ai reconnu.")
+AddEndNPCDialog(g_dwQuestID,1,"Apportez cette lettre à Guabrill qui est le sage-Assassin. Il est à la Fountain of Dead Person au nord des montagne de Leren.")
+AddEndNPCDialog(g_dwQuestID,1,"Oh, avant de rejoindre Guabrill, vous devrez trouver les boucles d'oreilles de Heren qui sont cachées quelque part dans Aniceknight, à Darkon3.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on a va parler à lahola
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous devez trouver les boucle d'oreille et aller parler à guabrill.")
+
+SetEndNPC(g_dwQuestID,2,g_szNPCName2)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Vous cherchez les boucles d'oreille de Heren ? Oui c'est moi qui les gardes.")
+AddEndNPCDialog(g_dwQuestID,2,"Vous les voulez ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,0)
+AddStartAddItem(g_dwQuestID,3,18171,1)
+SetStartNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddStartNPCDialog(g_dwQuestID,3,"Oh Heren, grand guerrier, si tu nous avais laissé un indice sur le lieu ou repose tes boucles d'oreilles...")
+
+SetEndNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+AddEndRequiredItem(g_dwQuestID,3,18171,1)
+AddEndNPCDialog(g_dwQuestID,3,"Hmm? Ce sont les boucles d'oreille de Heren! Comment les avez vous eu ? Merci! Elles apparttenaient à Heren le héro assassin durant la guerre des héros..")
+AddEndNPCDialog(g_dwQuestID,3,"Mais elle étaient perdues quelque part vers Heret. Personnes n'arrivaient à les trouver.. Merci, merci vraiment !")
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+

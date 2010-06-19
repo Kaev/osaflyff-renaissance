@@ -1,0 +1,16 @@
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+AddDrop(25,80); --hand claw
+
+
+AddDrop(500,80); --armor lvl 4 vagrant M/F
+AddDrop(503,80);
+AddDrop(507,80);
+AddDrop(505,80);
+AddDrop(509,80);
+AddDrop(513,80);
+
+AddDrop(2001,50); --green shield
+
+AddDrop(2974,100);--peakyrind

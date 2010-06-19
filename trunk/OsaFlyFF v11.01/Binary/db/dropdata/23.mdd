@@ -1,0 +1,21 @@
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2800,330); --lolipop 33%
+AddDrop(2816,200); --orange juice 20%
+AddDrop(2816,200); --orange juice 20%
+AddDrop(3206,13); --card elem flame 0.13%
+AddDrop(3206,25); --card elem flame 0.25%
+AddDrop(522,13); --parmil helmet 0.13%
+AddDrop(523,13); --parmil suit
+AddDrop(524,13); --gauntlet
+AddDrop(525,13); --parmil boots
+AddDrop(526,13); --leaf helmet
+AddDrop(527,13); --leaf suit
+AddDrop(528,13); --leaf gauntlet
+AddDrop(529,13); --leaf boots 0.13%
+
+AddDrop(2035,1); --ori/sunstone 0.1%
+AddDrop(2036,1); --moon stone 0.1%
+
+AddDrop(2950,330); --twinkle stone 33%
+AddDrop(2950,330); --twinkle stone 33%
