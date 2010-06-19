@@ -1,0 +1,1 @@
+AddText("Forecasting the weather has become possible since the observatory was build. I must say, I am quite happy I build it, even though it took so long.","START");

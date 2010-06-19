@@ -1,0 +1,1 @@
+AddText("Do not lower your guard here, or you will not survive. Always keep that in mind.","START");

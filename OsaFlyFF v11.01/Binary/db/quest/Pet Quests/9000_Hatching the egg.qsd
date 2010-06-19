@@ -1,0 +1,33 @@
+g_szQuestName 		= "Hatching the egg"
+g_dwQuestID 		= 9000
+g_szNPCName 		= "MaFl_PetTamer"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+SetRepeatable(g_dwQuestID,1)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+AddStartRequiredBuffPetItemID(g_dwQuestID,0,21029)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Oh? Is that an egg there? I'm sure I can help you hatch it as soon as it is at 99.99% EXP!")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Your egg does not have enough EXP yet...")
+AddStartRequiredBuffPetItemID(g_dwQuestID,2,21029)
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredBuffPetItemID(g_dwQuestID,2,21029)
+SetEndRequiredBuffPetEXP(g_dwQuestID,2,50000,50000)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Alright,well done! Let me see what I can do...")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndRaiseBuffPet(g_dwQuestID,3,1)

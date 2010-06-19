@@ -1,0 +1,1 @@
+AddText("El se despertara... Y el heroe revivira, despierto por el sonido de las máquinas.","START");

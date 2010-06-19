@@ -1,0 +1,14 @@
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+AddDrop(21,150); --wooden sword
+AddDrop(23,80); --long sword
+
+AddDrop(502,50); --armor lvl 1 vagrant M/F
+AddDrop(506,50);
+AddDrop(510,50);
+AddDrop(504,50);
+AddDrop(508,50);
+AddDrop(512,50);
+
+AddDrop(2952,100);--palin

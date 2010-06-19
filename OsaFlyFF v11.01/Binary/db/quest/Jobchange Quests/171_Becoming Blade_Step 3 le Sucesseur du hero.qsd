@@ -1,0 +1,59 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 4 - Le successeur"
+g_dwQuestID = 171
+g_szNPCName = "MaFl_Ata"
+g_szNPCNameEnd = "MaDa_Jeperdy"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,170,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant vous devez rencontrer le prêtre Jeperdy qui se trouve à Brekin, à Darkon 3, et dirige l'autel des Assassins.")
+AddEndNPCDialog(g_dwQuestID,1,"J'ai entendu dire que les Scopicons à Tableland of Silence, au sud de Saint Morning, possédaient un joyaux nommé la larme de l'obscurité. C'est une menace pour l'âme des héros.")
+AddEndNPCDialog(g_dwQuestID,1,"S'il vous plait récupérez une larme avant de vous rendre devant Brekin, et amenez la au prêtre Jeperdy. Peut être pourrions nous trouver exactement comment elle corromp les ames en l'etudiant.")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance successeur")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a jeperdy avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Les larmes sombre peuvent être très dangereuse. Nous devons vraiment en obtenir et savoir pourquoi, ou l'autel sera en grand danger. Aidez moi s'il vous plait.")
+
+
+--Si on parle à Jeperdy apres
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,842,1) --il faut tuer le scorpion
+AddQuestDrop(g_dwQuestID,2,842,18172,3000000000,1) --100% de chance de droper la larme
+AddEndNPCDialog(g_dwQuestID,2,"Hmm.. Celà me donne un mauvais pressentiment comme je le pensais, et même les pierres d'âme y réagissent. Nous devons rapidement en apprendre plus.")
+AddEndNPCDialog(g_dwQuestID,2,"En tout cas, merci beaucoup. Grâce à vous, l'âme des héros sera sauf. Ne vous inquiétez pas j'en trouverais la cause.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18172,1)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+

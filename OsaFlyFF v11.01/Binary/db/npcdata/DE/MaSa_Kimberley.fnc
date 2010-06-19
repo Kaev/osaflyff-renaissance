@@ -1,0 +1,16 @@
+AddText("Hallo, kann ich dir helfen?","START");
+AddLink( "Vorstellung","Vorstellung");
+AddLink( "Ort","Ort");
+AddLink( "Kauf","Kauf");
+AddLink( "Tod","Tod");
+AddLink( "Tschüss", "STOP");
+AddText( "Mein Name ist Kimberly Prosis und ich habe die Aufgabe dich durch Saint Morning zu führen. Jeff in Flaris ist mein Ehemann.","Vorstellung");
+AddText( "Das ist Saint Morning, die heilige Stadt. Ist sie nicht friedlich? Ich bin sehr stolz, hier zu leben. Wie auch immer, da draußen gibt es eine Menge Monster.","Ort");
+AddText( "Du solltest nichts überstürzen und dich erst informieren und dir die Stadt ansehen. Es ist von Vorteil, wenn du alle Händler besuchst und deine Reise vorbereitest.","Ort");
+AddText( "Es gibt eine Vielzahl an Geschäften in der Stadt. Wo immer ein spezielles Gebäude steht, kannst du Leute finden die ihre selbstgemachten Waren verkaufen.","Kauf");
+AddText( "Jedes Geschäft verkauft unterschiedliche Waren. Aber schau dich zuerst sorgfältig um, bevor du auf irgendwelche Betrügereien hereinfällst.","Kauf");
+AddText( "Bitte versichere dich, dass du ausreichend Nahrung, Tränke und Munition mit dir führst. In der Stadt bekommst du alles, was du benötigst.","Kauf");
+AddText( "Wenn deine HP auf 0 sinkt, dann wirst du ohnmächtig. Achte auf die Anzeige, besonders im Kampf.","Tod");
+AddText( "Aber sei unbesorgt wenn du ohnmächtig wirst. Es gibt eine Maschine für die Wiederbelebung in Saint Morning namens Lodestar.","Tod");
+AddText( "Sie bringt dich in die Stadt und belebt dich wieder.","Tod");
+AddText( "Leb wohl.","STOP");

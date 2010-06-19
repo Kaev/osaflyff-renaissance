@@ -1,0 +1,11 @@
+AddText("Hola, ¿nescesitas ayuda?","START");
+AddLink( "Adios","STOP");
+AddLink( "Introducción","Introducción");
+AddLink( "¿Dónde estoy?","estoy");
+AddLink( "¿Cómo compro?","compro");
+AddLink( "Sobre la muerte...","muerte");
+AddText("Hasta luego","STOP");
+AddText("Mi nombre es Ismeralda y soy la guia acá en Flaris..","Introducción");
+AddText("Estás Saint Morning, la ciudad de la Santa Mañana. ¿No es pacífica? Estoy muy orgullosa de vivir aquí. Tan feliz como estoy de estar aquí todavía hay un montón de monstruos fuera de los muros. ","estoy");
+AddText("Hay varias tiendas de la ciudad. En caso de que sea un edificio especial, usted puede encontrar personas que quieran vender los productos que han hecho. ","compro");
+AddText("Si tu HP llega a cero, te mueres. Asegúrese de mantener un ojo en su HP en todo momento. ","muerte");

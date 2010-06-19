@@ -1,0 +1,1 @@
+AddText("Prévoir le temps qu'il va faire et devenu possible avec mon observatoire. Je dois dire que je suis assez fier de l'avoir construit, même si ça m'a pris beaucoup de temps.","START");

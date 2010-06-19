@@ -1,0 +1,47 @@
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2801,300);--II_GEN_FOO_INS_BISCUIT
+AddDrop(2817,250);--II_GEN_FOO_ICE_STRAWBERRYSHAKE
+AddDrop(2817,250);--II_GEN_FOO_ICE_STRAWBERRYSHAKE
+AddDrop(2530,140);--II_GEN_REF_REF_FIRST
+AddDrop(2544,250);--II_GEN_POT_DRI_VITAL100
+
+AddDrop(3216,13); --II_GEN_MAT_ELE_GENERATOR 0.13%
+AddDrop(3216,25); --II_GEN_MAT_ELE_GENERATOR 0.25%
+
+AddDrop(26464,10); --II_GEN_JEW_RIN_STRRING 1%
+AddDrop(26467,10); --II_GEN_JEW_RIN_INTRING 1%
+
+AddDrop(515,110); --rose armor
+AddDrop(517,110); --rose armor
+AddDrop(519,110); --rose armor
+AddDrop(521,110); --rose armor
+AddDrop(514,110); --iner armor
+AddDrop(516,110); --iner armor
+AddDrop(518,110); --iner armor
+AddDrop(520,110); --iner armor
+AddDrop(2003,110); --round shield
+
+AddDrop(7000,50); --light shield
+AddDrop(7001,25); --battle shield
+
+
+
+AddDrop(27,250); --parmil sword
+AddDrop(61,125); --crimson sword
+AddDrop(29,80); --Petal sword
+AddDrop(31,80); --Blink sword
+AddDrop(81,250); --Rodney axe
+AddDrop(83,125); --Morrow axe
+AddDrop(85,80); --Curning axe
+AddDrop(87,80); --Shyadin axe
+
+AddDrop(22002,25); --shinning sword
+AddDrop(6500,50); --Kehin sword
+AddDrop(22003,25); --claw of lawolf
+AddDrop(6900,50); --grabber axe
+
+AddDrop(2035,1); --ori/sunstone 0.1%
+AddDrop(2036,1); --moon stone 0.1%
+
+AddDrop(2955,330);--poporam

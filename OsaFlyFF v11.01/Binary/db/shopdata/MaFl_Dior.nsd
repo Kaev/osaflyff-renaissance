@@ -1,0 +1,8 @@
+AddShopItem(0, 5000);
+AddShopItem(0, 5001);
+AddShopItem(0, 5002);
+AddShopItem(0, 5003);
+AddShopItem(1, 5101);
+AddShopItem(1, 5102);
+AddShopItem(1, 5103);
+AddShopItem(1, 5104);

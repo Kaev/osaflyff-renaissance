@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Office Quest template   ---------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName = "A new yoyo"
+g_dwQuestID = 2045
+g_szNPCName = "MaDa_Lurif"
+g_dwChgEXP = 81369642
+g_dwChgPenya = 243000
+g_dwReqItemID = 3002
+g_dwReqItemAmount = 55
+g_dwReqMinLVL = 81
+g_dwReqMaxLVL = 86
+g_szReqJobs = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs = {"The union of Acrobats recently decided to develop a new type of yoyos. They are going to add some very sharp materials to razor your enemy and to use Renykens from Irens to prevent such a heavy weapon from breaking, you could even fight Clockworks with it!","Anyway, they need 55 Renykens which is a huge amount. Could you do me and them a favour and gather them please?"}
+g_szFinishDialogs = {"Well done. You successfully completed the quest."}
+g_szCannotFinishDialogs = {"You cannot collect them? OK. If you collect them all, come back to me."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,2,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredItem(g_dwQuestID,2,g_dwReqItemID,g_dwReqItemAmount)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,3,g_dwChgEXP)
+AddEndRemoveItem(g_dwQuestID,3,g_dwReqItemID,g_dwReqItemAmount)
+

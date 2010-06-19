@@ -1,0 +1,1 @@
+AddText( "¡Hola y bienvenido al flyForFun, si nescesitas algo anda a los foros! ¡Simplemente soy el Alcalde de este lugar!","START");

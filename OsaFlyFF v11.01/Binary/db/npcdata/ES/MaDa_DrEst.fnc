@@ -1,0 +1,1 @@
+AddText("Las criaturas fueron una vez que las máquinas utilizadas en la fábrica Erons Factory. Pero la mágica naturaleza de Madrigal y la exposición a los residuos procedentes de la fábrica las convertió en los monstruos que son hoy.","START");

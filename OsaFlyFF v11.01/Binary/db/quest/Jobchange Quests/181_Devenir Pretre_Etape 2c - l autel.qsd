@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2c - L'Autel"
+g_dwQuestID = 181
+g_szNPCName = "MaFl_Teshar"
+g_szNPCNameEnd = "MaDa_Heedan"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,180,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant allez voir le maitre prêtre Heedan à Darkon 3")
+AddEndNPCDialog(g_dwQuestID,1,"Heedan lutte pour essayer de récupérer le Teardrop of Aenn qui a été volé par Hunter X. Vous devez lui ramener le trésor qu'a pris ce voleur !")
+AddEndNPCDialog(g_dwQuestID,1,"Hunter X vie à Darkon1. S'il vous plait récupérez le Teardrop of Aenn et apportez le au maitre prêtre Heedan à Cendil, Darkon 3.")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance successeur")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si onreparle a Heedan avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"C'est le trésor le plus important de tout Madrigal! S'il vous plait ramenez les moi. C'est votre devoir !")
+
+
+--Si on parle à Jeperdy apres
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredItem(g_dwQuestID,2,10391,1) --il faut le parchemin
+AddEndRequiredMonsterKill(g_dwQuestID,2,844,1) --il faut tuer HunterX
+AddQuestDrop(g_dwQuestID,2,844,18176,3000000000,1) --100% de chance de droper la Teardrop
+AddEndNPCDialog(g_dwQuestID,2,"Oh, vous avez fait un bon travail! Maintenant le trésor est là ou il devrait être...")
+AddEndNPCDialog(g_dwQuestID,2,"Merci beaucoup. Je ferais de mon mieux pour le protéger. Merci.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à guabrille
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,18176,1)
+AddEndRemoveItem(g_dwQuestID,3,10391,1)
+

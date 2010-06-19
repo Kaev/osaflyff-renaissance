@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 1 - L'épreuve du combat"
+g_dwQuestID = 188
+g_szNPCName = "MaDa_Horison"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+
+g_szReqJobs = {"MAGE"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3) --initialisation
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voulez vous devenir un successeur du Héro Elementaliste ? Ce ne sera pas facile. Mais je pense que vous êtes prêt, vu le chemin que vous avez déjà parcourru. ")
+AddEndNPCDialog(g_dwQuestID,1,"Nous allons sd'abord procéder à un simple test pour voir si vous êtes qualifié pour être un successeur. Il s'agit d'une épreuve d'habilité au combat")
+AddEndNPCDialog(g_dwQuestID,1,"Comme je vous l'ai dit, c'est très simple. Tuez 20 Drillers à KhipRa, à Darkon1. Pas des small Drillers ni un géant, juste des Drillers.")
+AddEndNPCDialog(g_dwQuestID,1,"Je vous observerais de loin")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous cette épreuve ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,1);
+
+-- Si on a pas encore tué les 20 drillers
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous n'avez pas encore tué assez de Drillers. Tuez en 20 pour prouver votre que je puisse estimer votre valeur.")
+
+--Après avoir tué 20 drillers
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredMonsterKill(g_dwQuestID,2,505,20)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Bien joué. Vous avez passé le test du combat. Je vous reconnais en tant que successeur.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+

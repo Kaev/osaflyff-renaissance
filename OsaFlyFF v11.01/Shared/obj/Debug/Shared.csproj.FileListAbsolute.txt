@@ -1,0 +1,15 @@
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Debug\ResolveAssemblyReference.cache
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Debug\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Debug\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Debug\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Debug\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Debug\Shared.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Binary\Shared.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Binary\Shared.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Debug\Shared.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Debug\Shared.pdb

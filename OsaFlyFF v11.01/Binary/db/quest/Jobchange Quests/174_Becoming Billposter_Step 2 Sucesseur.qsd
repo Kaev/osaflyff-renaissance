@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2 - Le successeur"
+g_dwQuestID = 174
+g_szNPCName = "MaDa_Ride"
+g_szNPCNameEnd = "MaFl_Domek"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,173,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitations, voici une lettre de recommandation confirmant que tu es sur la voie de devenir Moine.")
+AddEndNPCDialog(g_dwQuestID,1,"Il faut que tu l'apportes à Domek, le Sage des Moines qui se trouve à la Fontaine des Défunts de Flaris. Mais avant cela, j'aimerai que tu retrouves le Document du Hall de Roentel…")
+AddEndNPCDialog(g_dwQuestID,1,"C'est une relique du Héros qui a été dérobé par Hoiren à la mort de Roentel. J'ai entendu dire que Hoiren errait dans le Jardin de Rhisis, dans la région des Tombstones.")
+AddEndNPCDialog(g_dwQuestID,1,"Que la maîtrise de Roentel t'accompagne dans ta quête !")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+-- Si onreparle a Domek avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Retrouver le Document du Hall de Roentel qui se trouve quelque part au Jardin de Rhisis, dans la région des Tombstones, puis le rapporter au Sage des Moines Domek à la Fontaine des Défunts de Flaris.")
+
+
+--Si on parle à Domek apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,843,1)
+AddQuestDrop(g_dwQuestID,2,843,18173,3000000000,1)
+AddEndRequiredItem(g_dwQuestID,2,18173,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh ! C'est... c'est le Document du Hall de Roentel ! Où l'as-tu retrouvé ?! Il avait été volé il y a des années et personne n'avait réussi à le retrouver à ce jour… Il s'agit du plan du lieu où Roentel, Héros des Moines, a appris l'art de la guerre.")
+AddEndNPCDialog(g_dwQuestID,2,"J'apprécie vraiment les efforts que tu as fournis pour le retrouver. Merci, merci infiniment ! Les âmes de nombreuses personnes vont et viennent ici à la Fontaine des Défunts. C'est ici la limite entre la vie et la mort.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Hormes
+AddState(g_dwQuestID,3,14)

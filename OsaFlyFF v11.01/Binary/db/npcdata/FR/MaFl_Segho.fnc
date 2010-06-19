@@ -1,0 +1,1 @@
+AddText("Puis je vous aider ?","START");

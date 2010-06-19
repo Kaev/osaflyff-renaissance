@@ -1,0 +1,1 @@
+AddText("Hola.","START");

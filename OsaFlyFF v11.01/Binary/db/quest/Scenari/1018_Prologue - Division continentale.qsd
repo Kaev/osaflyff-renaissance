@@ -1,0 +1,83 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-- Initialisation des variables
+
+g_dwQuestID 		= 1018
+g_szQuestName 		= "Division continentale"
+g_szNPCNameStart    = "MaFl_Martinyc"
+g_szNPCNameEnd      = "MaFl_Martinyc"
+g_dwChgEXP 		    = 0
+g_dwChgPenya 		= 0
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredItems     = {{18127,5},{18128,5},{18129,5}} -- {itemID,quantité}
+g_RewardItems		= { {18130,1}} -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {"Parfait, je peux donc poursuivre mes recherches ! En fait... j'ai découvert que toutes les informations au sujet de l'histoire de Madrigal sont fausses !","L'autre jour j'ai presque été tué par des assassins, j'ai alors réalisé la raison pour laquelle la Société d'Histoire ne veux pas poursuivre ses recherches… mais je n'abandonnerai jamais !","Il faut absolument que je découvre la véritable histoire de Madrigal, c'est très important ! Ensuite je pourrai révéler la vérité à tous les habitants.","Il me faut des pierres spéciales que l'on trouve sur chaque continent. Tu les trouveras près des Autels Pourpres des trois îles et il m'en faut 5 de chaque.","S'il te plaît, peux-tu m'aider ? Sois prêt à encourir de grands dangers cependant…"}
+g_szRefuseQuestDialog = {"Si tu penses que ça ne vaut pas le coup de risquer ta vie, je ne te blâmerais pas. Merci m'avoir écoutée néanmoins. "}
+g_szCannotFinishDialogsStartNPC = {""}
+g_szCannotFinishDialogsEndNPC = {"S'il te plaît, rapporte-moi 5 pierres de chaque île : Flaris, Saint Morning et Darkon, soit 15 en tout. Bonne chance !"}
+g_szFinishDialogs 	  = {"Oh, attend... (silence bref) Maintenant, tu dois faire très, trés attention.","Je crains que les assassins à qui j'ai eu affaire s'en prennent à toi..."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartRequiredQuest(g_dwQuestID,0,1017,4)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+for i = 1 , table.getn(g_szRefuseQuestDialog) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szRefuseQuestDialog[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+-- Cas on accepte la quete
+AddState(g_dwQuestID,3,0)
+SetStartNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsEndNPC) , 1 do
+	AddStartNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsEndNPC[i])
+end
+
+
+SetEndNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szFinishDialogs[i])
+end
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRequiredItem(g_dwQuestID,3,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+SetEndChangePenya(g_dwQuestID,4,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,4,g_dwChgEXP)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRemoveItem(g_dwQuestID,4,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+for i = 1 , table.getn(g_RewardItems) , 1 do
+   AddEndAddItem(g_dwQuestID,4,g_RewardItems[i][1],g_RewardItems[i][2])
+end
+AddFinishQuestDialog(g_dwQuestID,4,"Voici la preuve de la division continentale. * vous tend la preuve * ")
+

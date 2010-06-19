@@ -1,0 +1,84 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-- Initialisation des variables
+
+g_dwQuestID 		= 1017
+g_szQuestName 		= "Devoir de mémoire"
+g_szNPCNameStart    = "MaFl_Martinyc"
+g_szNPCNameEnd      = "MaFl_FlaMayor"
+g_dwChgEXP 		    = 0
+g_dwChgPenya 		= 21000
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredItems     = {{18126,1}} -- {itemID,quantité}
+g_RewardItems		= { {1337,1},{1338,2},{1339,3},... } -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {"Hmm... Que dois-je faire ?! Je suis vraiment heureux de te rencontrer en tout cas, crois-tu que tu pourrais m'aider ?","Pour être tout à fait honnête, quelque chose m'angoisse depuis quelques temps…","J'étudie l'histoire de Madrigal, mais il reste de nombreuses zones d'ombres… Pourrais-tu maider ?.","Tu trouveras ce devoir de mémoire près de l'office","Puis, va le donner au maire de Flaris."}
+g_szRefuseQuestDialog = {"Quoi ? Tu refuses. Je savais bien que c'était trop beau pour être vrai."}
+g_szCannotFinishDialogsStartNPC = {"Tu trouveras ce devoir de mémoire près de l'office","Puis, va le donner au maire de Flaris."}
+g_szCannotFinishDialogsEndNPC = {"Est-ce que je peux te renseigner ? Ah, vous voulez me remettre une lettre de Martinyc ? Reviens me voir avec ce Devoir de mémoire…"}
+g_szFinishDialogs 	  = {"Il semble que Martiinyc soit trop occupée pour me rendre visite d'elle-même…","Hmm…d'accord j'accepte qu'elle poursuivre ces études sur l'histoire de Madrigal."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+AddEndNPCDialog (g_dwQuestID,2,"Quoi ? Tu refuses. Je savais bien que c'était trop beau pour être vrai.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+-- Cas on accepte la quete
+AddState(g_dwQuestID,3,0)
+--SetStartNPC(g_dwQuestID,3,g_szNPCNameStart)
+--AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+--for i = 1 , table.getn(g_szCannotFinishDialogsStartNPC) , 1 do
+--	AddStartNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsStartNPC[i])
+--end
+SetStartNPC(g_dwQuestID,3,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsEndNPC) , 1 do
+	AddStartNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsEndNPC[i])
+end
+
+
+SetEndNPC(g_dwQuestID,3,g_szNPCNameEnd)
+--AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+--AddEndNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsEndNPC)
+
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRequiredItem(g_dwQuestID,3,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,4)
+
+AddState(g_dwQuestID,4,14)
+SetEndChangePenya(g_dwQuestID,4,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,4,g_dwChgEXP)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRemoveItem(g_dwQuestID,4,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+

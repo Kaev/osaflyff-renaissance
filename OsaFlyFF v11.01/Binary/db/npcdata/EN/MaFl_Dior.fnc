@@ -1,0 +1,1 @@
+AddText("Our family has managed this station for generations. THey were very great. I would like to be like one of them.","START");

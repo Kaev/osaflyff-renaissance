@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2a - Le successeur"
+g_dwQuestID = 58
+g_szNPCName = "MaDa_Lorein"
+g_szNPCNameEnd = "MaFl_Radyon"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ACROBAT"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,57,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Félicitation! Vous avez passé le premier test! Apportez cette lettre de recommandation au Sage-Jester ,Radyon ,à la Fountain of the Dead à Flaris.")
+AddEndNPCDialog(g_dwQuestID,1,"Mais d'abord trouvez Ren qui vit dans le desert de fantaisie, au sud de SainCity.  Prenez l'anneau que Ren possède et ramenez le à Radyon..")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+--On va parler à Kimel
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)--on a pas recupéré sa lettre
+AddStartNPCDialog(g_dwQuestID,2,"Avez vous rencontré Lorein? Dans ce cas pourquoi venez vous les mains vide ? Ne vous a t-il pas demandé de m'amener quelque chose? ça n'a pas de sens...")
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddQuestDrop(g_dwQuestID,2,688,10390,3000000000,1) --on permet de droper l'anneau à 100%
+AddEndRequiredMonsterKill(g_dwQuestID,2,688,1) --il faut tuer Ren
+
+AddEndRequiredItem(g_dwQuestID,2,10390,1) --il faut la lettre
+AddEndNPCDialog(g_dwQuestID,2,"Oh! Merci de m'avoir apporté cet anneau! En fait il appartenait au héro jester Kerenen. Ren lorgnait dessus depuis un moment.")
+AddEndNPCDialog(g_dwQuestID,2,"Lorsque la guerre fut fini et que Kerenen mourru, Ren rechercha cet anneau pendant des centaines d'années et l'a finalement trouvé il y a quelques années. Merci.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+

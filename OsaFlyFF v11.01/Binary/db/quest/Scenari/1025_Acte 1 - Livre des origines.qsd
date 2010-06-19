@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+-- Initialisation des variables
+
+g_dwQuestID 		= 1025
+g_szQuestName 		= "Livre des origines"
+g_szNPCNameStart    = "MaSa_Rovanett"
+g_szNPCNameEnd      = "MaDa_Hachal"
+g_dwChgEXP 		    = 0
+g_dwChgPenya 		= 124800
+g_dwReqMinLVL 		= 20
+g_dwReqMaxLVL 		= 121
+g_RequiredItems     = { {18144,1}} -- {itemID,quantité}
+g_RewardItems		= { {18144,1}} -- {itemID,quantité}
+g_QuestItems		= { {6025,1,20,3000000000} } -- {itemID,quantité,monstreID,probabilité(3000000000=100%)}
+g_szReqJobs         = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT","BLADE","KNIGHT","PSYKEEPER","ELEMENTER","BILLPOSTER","RINGMASTER","RANGER","JESTER","GATEKEEPER","DOPPLER","BLADE_MASTER","KNIGHT_MASTER","RINGMASTER_MASTER","BILLPOSTER_MASTER","ELEMENTER_MASTER","PSYKEEPER_MASTER","RANGER_MASTER","JESTER_MASTER","BLADE_HERO","KNIGHT_HERO","RINGMASTER_HERO","BILLPOSTER_HERO","ELEMENTER_HERO","PSYKEEPER_HERO","RANGER_HERO","JESTER_HERO"}
+g_szAddDialogs 		= {
+"Ce que tu as trouvé à la Colline de Shade est vraiment intéressant. J'ai détaillé tout ce que j'avais pu trouver dans ce livre.",
+"S'il te plaît, apporte vite le fruit de mes découvertes à Hachal à Darkon 1.",
+"Tu ne veux vraiment pas faire cela pour moi ?"
+}
+
+g_szRefuseQuestDialog = {"Comment ?! Tu ne peux pas renoncer à une telle aventure !"}
+g_szCannotFinishDialogsStartNPC = {"S'il te plaît, apporte vite le fruit de mes découvertes à Hachal à Darkon 1."}
+g_szCannotFinishDialogsEndNPC = {}
+g_szFinishDialogs 	  = {"Oh… Rovanett a vraiment réalisé un travail incroyable en écrivant ce livre !","Nous approchons du but ! Bientôt la véritable histoire de Madrigal sera enfin connue de tous."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
+AddQuest(g_dwQuestID,g_szQuestName,0,5)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartRequiredQuest(g_dwQuestID,0,1024,5)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,2);
+
+AddState (g_dwQuestID,2,-1)
+SetEndNPC(g_dwQuestID,2,g_szNPCNameStart)
+for i = 1 , table.getn(g_szRefuseQuestDialog) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szRefuseQuestDialog[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_ADD_QUEST","__OK__",g_dwQuestID,0);
+
+
+AddState(g_dwQuestID,3,0)
+SetEndNPC(g_dwQuestID,3,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,3,g_szQuestName,g_dwQuestID,3)
+for i = 1 , table.getn(g_szCannotFinishDialogsStartNPC) , 1 do
+	AddEndNPCDialog(g_dwQuestID,3,g_szCannotFinishDialogsStartNPC[i])
+end
+for i = 1 , table.getn(g_RewardItems) , 1 do
+   AddEndAddItem(g_dwQuestID,3,g_RewardItems[i][1],g_RewardItems[i][2])
+end
+AddEndNPCAnswerButton(g_dwQuestID,3,"BTN_ADD_QUEST","__OK__",g_dwQuestID,4);
+
+-- On va voir Hachal à Darkon
+AddState(g_dwQuestID,4,0)
+SetStartNPC(g_dwQuestID,4,g_szNPCNameEnd)
+SetEndNPC(g_dwQuestID,4,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,4,g_szQuestName,g_dwQuestID,4)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+   AddEndRequiredItem(g_dwQuestID,4,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,4,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,4,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,5)
+
+AddState(g_dwQuestID,5,14)
+SetEndChangePenya(g_dwQuestID,5,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,5,g_dwChgEXP)
+for i = 1 , table.getn(g_RequiredItems) , 1 do
+	AddEndRemoveItem(g_dwQuestID,5,g_RequiredItems[i][1],g_RequiredItems[i][2])
+end
+--for i = 1 , table.getn(g_RewardItems) , 1 do
+--   AddEndAddItem(g_dwQuestID,5,g_RewardItems[i][1],g_RewardItems[i][2])
+--end
+--AddFinishQuestDialog(g_dwQuestID,5,"Voici la lettre. * vous tend la lettre * ")
+

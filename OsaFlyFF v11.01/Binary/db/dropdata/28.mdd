@@ -1,0 +1,14 @@
+AddDrop(2806,300);--MEATSKEWER
+AddDrop(2816,250);--II_GEN_FOO_ICE_ORANGEJUIICE
+
+AddDrop(25,100); --hand claw
+
+
+AddDrop(500,50); --armor lvl 4 vagrant M/F
+AddDrop(503,50);
+AddDrop(507,50);
+AddDrop(505,50);
+AddDrop(509,50);
+AddDrop(513,50);
+
+AddDrop(2953,100);--chupim

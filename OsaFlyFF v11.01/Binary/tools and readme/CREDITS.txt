@@ -1,0 +1,29 @@
+OSAFLYFF PROJECT - CREDITS, DEVELOPERS AND SUPPORTERS
+
+Adidishen - head developer, project creator, packet sniffer, database structure
+**Caali** - Tons of ideas, code support, best packet sniffing support, general support, database structure, most of the formulas and of course: *lots* of advice -- and much more -- THANKS!
+Rynti - bughunting, code support
+Funkynicco - Code support
+GlaphanKing - Formulas, code support, ideas
+Akitasha - Code support
+Totakeke - Code support
+Aldimaster - Great database, NPC shops
+BBim - general support, ideas
+FrostElite - Ideas, (lots of) general support
+divinepunition - Code support
+Delrey - bughunting
+exo58 - code support
+BlackGiant - Big support !! Special thanks i love you (divinepunition)
+
+And many others (if I forgot you, contact me).
+
+Thanks everyone for supporting osAFlyff project!
+
+
+-------------------
+
+osAflyff rennaissance - crédits :
+
+Divinepunition - pour son aide dans les moments ou je ne m'en sortait pas.
+Maad - dev.
+Seymour - dev.

@@ -1,0 +1,52 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 1 - L'épreuve de la force"
+g_dwQuestID = 168
+g_szNPCName = "MaDa_Corel"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_MonsterKills = {505,20}
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Ainsi vous etes enfin prêt à devenir Assasin. Etes vous sur d'avoir l'habileté de laisser tomber votre bouclier et continuer sans mourrir ? ")
+AddEndNPCDialog(g_dwQuestID,1,"D'avoir la bravoure de combattre sans avoir peur de la mort ? S'il en est ainsi vous êtes prêt à devenir un assassin.")
+AddEndNPCDialog(g_dwQuestID,1,"Cependant vous allez devoir passer des épreuves pour devenir un assassin. Premièrement vous devez tuer 20 Drillers pour moi. Celà devrait être facile pour vous maintenant.")
+AddEndNPCDialog(g_dwQuestID,1,"Attention, par des small ou des capitaines. Juste des drillers")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous cette épreuve ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,1);
+
+-- Si on a pas encore tué les 20 drillers
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous n'avez pas encore tué assez de Drillers. Tuez en 20 pour prouver votre valeur.")
+
+--Après avoir tué 20 drillers
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredMonsterKill(g_dwQuestID,2,505,20)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Bien joué. Vous avez passé le test de la force. Vous êtes maintenant un successeur.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+

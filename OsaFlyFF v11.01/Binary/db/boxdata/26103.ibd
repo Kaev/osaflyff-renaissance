@@ -1,0 +1,5 @@
+AddBoxItem(10207,100,5); -- refresh holder
+AddBoxItem(10208,100,5); -- vitaldrink x
+AddBoxItem(10210,100,2); -- grilled eel
+AddBoxItem(10218,100,2); -- activation
+AddBoxItem(10270,100,2); -- upcut

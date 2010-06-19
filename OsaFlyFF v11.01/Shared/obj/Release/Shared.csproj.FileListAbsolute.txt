@@ -1,0 +1,40 @@
+E:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Binary\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Binary\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Binary\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Binary\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\ResolveAssemblyReference.cache
+F:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyff survive\Shared\obj\Release\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\ResolveAssemblyReference.cache
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\Shared.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Binary\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\Shared\obj\Release\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\Shared.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\Shared.pdb
+J:\UltraBackup\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.dll
+J:\UltraBackup\Mes documents\Visual Studio 2008\Projects\Morpheus\Binary\Shared.pdb
+J:\UltraBackup\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\ResolveAssemblyReference.cache
+J:\UltraBackup\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\Shared.dll
+J:\UltraBackup\Mes documents\Visual Studio 2008\Projects\Morpheus\Shared\obj\Release\Shared.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Binary\Shared.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Binary\Shared.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Release\ResolveAssemblyReference.cache
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Release\Shared.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\Shared\obj\Release\Shared.pdb
+Z:\OsaFlyff\Binary\Shared.dll
+Z:\OsaFlyff\Binary\Shared.pdb
+Z:\OsaFlyff\Shared\obj\Release\ResolveAssemblyReference.cache
+Z:\OsaFlyff\Shared\obj\Release\Shared.dll
+Z:\OsaFlyff\Shared\obj\Release\Shared.pdb

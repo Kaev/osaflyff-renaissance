@@ -1,0 +1,1 @@
+AddText("¡Mi familia es la mejor entrenadora de mascotas en todo Madrigal! ¡Sabémos lo que se necesita para ser un entrenador de mascotas!","START");

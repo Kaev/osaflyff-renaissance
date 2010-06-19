@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Office Quest template   ---------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName = "Mysterious Collector -Two-"
+g_dwQuestID = 2027
+g_szNPCName = "MaDa_Lurif"
+g_dwChgEXP = 518850
+g_dwChgPenya = 153000
+g_dwReqItemID = 2979
+g_dwReqItemAmount = 40
+g_dwReqMinLVL = 51
+g_dwReqMaxLVL = 56
+g_szReqJobs = {"VAGRANT","MERCENARY","MAGICIAN","ASSIST","ACROBAT"}
+g_szAddDialogs = {"You probably wont believe it, but the Mysterious Collector just wrote me a letter that he wants 40 Tomas for his collection.","Although I would love to get them, I am very busy with some other affairs at the moment, so would you be so kind and get me those drops?","If you do not know it yet, what we call a Toma is actuallt a gem that Leyenas make somehow."}
+g_szFinishDialogs = {"Well done. You successfully completed the quest."}
+g_szCannotFinishDialogs = {"You cannot collect them? OK. If you collect them all, come back to me."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+for i = 1 , table.getn(g_szReqJobs) , 1 do
+	AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs[i])
+end
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,2,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+AddEndRequiredItem(g_dwQuestID,2,g_dwReqItemID,g_dwReqItemAmount)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,g_dwChgPenya)
+SetEndChangeEXP(g_dwQuestID,3,g_dwChgEXP)
+AddEndRemoveItem(g_dwQuestID,3,g_dwReqItemID,g_dwReqItemAmount)
+

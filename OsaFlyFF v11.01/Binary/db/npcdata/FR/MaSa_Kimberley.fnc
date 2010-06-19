@@ -1,0 +1,11 @@
+AddText("Bonjour. En quoi puis je vous servir ?","START");
+AddLink( "Au revoir", "STOP");
+AddLink( "Présentation","Presentation");
+AddLink( "Ville","Ville");
+AddLink( "Achat","Achat");
+AddLink( "Mort","Mort");
+AddText( "Au revoir !","STOP");
+AddText( "Je m'appel Kimberley Prosis. Je guide les nouveaux arrivant à Saint City.");
+AddText( "Vous êtes à Saint City, la ville sainte. N'est ce pas une ville paisible ? Je suis vraiment fière de vivre ici. Mais attention, il y a tout de même des monstres au delà de ces murs.","Ville");
+AddText("Il y a de nombreuses boutiques dans notre ville. Vous trouverez de nombreuses personnes qui proposent de vendre les produits qu'ils ont fait.","Achat");
+AddText("Si vos HP arrivent à 0,vous mourrez. Veillez donc à bien surveiller votre barre de vie.","Mort");

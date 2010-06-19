@@ -1,0 +1,25 @@
+Information about these files.
+Written by Nicco
+--------------------------------------
+element.csv:
+10 chances between 1-100
+elemental refine on weapons and suits
+--------------------------------------
+upgrade.csv
+10 chances between 1-100
+general sunstone refine
+weapons & clothes
+--------------------------------------
+jewelry.csv
+20 chances between 1-100
+only jewelry, earrings.. etc
+--------------------------------------
+pierce.csv
+4 chances between 1-100
+suits only, at pierce npc
+--------------------------------------
+upgrade_ultimate.csv
+10 chances between 1-100
+ultimate weapons only upgrading using
+a shining oricalkum
+--------------------------------------

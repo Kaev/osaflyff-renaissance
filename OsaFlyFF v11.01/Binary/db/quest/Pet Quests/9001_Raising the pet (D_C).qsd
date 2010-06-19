@@ -1,0 +1,36 @@
+g_szQuestName 		= "Raising the pet (D->C)"
+g_dwQuestID 		= 9001
+g_szNPCName 		= "MaFl_PetTamer"
+g_dwMinBuffPetClass	= 1
+g_dwMaxBuffPetClass	= g_dwMinBuffPetClass
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+SetRepeatable(g_dwQuestID,1)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredBuffPetClass(g_dwQuestID,0,g_dwMinBuffPetClass,g_dwMaxBuffPetClass)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"What a nice pet! I'm sure I could teach it some tricks, but it doesn't look experienced enough yet...")
+AddEndNPCDialog(g_dwQuestID,1,"Would you bring it back to me after you spent some time with it so that it has gained more EXP?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCName)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Your pet does not have enough EXP yet...")
+SetStartRequiredBuffPetClass(g_dwQuestID,2,g_dwMinBuffPetClass,g_dwMaxBuffPetClass)
+SetEndNPC(g_dwQuestID,2,g_szNPCName)
+SetEndRequiredBuffPetClass(g_dwQuestID,2,g_dwMinBuffPetClass,g_dwMaxBuffPetClass)
+SetEndRequiredBuffPetEXP(g_dwQuestID,2,100000,100000)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Alright,well done! Let me see what I can do...")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndRaiseBuffPet(g_dwQuestID,3,1)

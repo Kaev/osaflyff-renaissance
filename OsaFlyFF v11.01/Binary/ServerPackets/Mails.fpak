@@ -1,0 +1,22 @@
+pak:StartNewMergedPacket(MyMoverID, 0xE9);
+--pak:Addint(id); -- userinfo.id
+pak:Addint(0); -- my id
+pak:Addint(2); -- mails count
+
+pak:Addint(1); -- mail ID
+pak:Addint(2); -- from
+pak:Addbyte(0); -- no items
+pak:Addint(4000); -- 4k penya
+pak:Addint(1250000); -- time?
+pak:Addint(1); -- slash
+pak:Addstring("Title");
+pak:Addstring("Hiiiiiiiii");
+
+pak:Addint(2); -- mail ID
+pak:Addint(2); -- from
+pak:Addbyte(0); -- no items
+pak:Addint(4000); -- 4k penya
+pak:Addint(1250000); -- time?
+pak:Addint(1); -- slash
+pak:Addstring("Title");
+pak:Addstring("Hiiiiiiiii");

@@ -1,0 +1,1 @@
+AddText("La terre trembla de peur lorsque la grande épée de la déesse entra en collision avec le bouclier des héros.","START");

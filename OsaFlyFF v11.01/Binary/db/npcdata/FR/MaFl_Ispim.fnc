@@ -1,0 +1,11 @@
+AddText("Bonjour, comment puis je vous aider ?","START");
+AddLink( "Présentation","Presentation");
+AddLink( "Au revoir!", "STOP");
+AddLink( "Lieu","Lieux");
+AddLink( "Achat","Achat);
+AddLink( "Mort","Mort"));
+AddText("Au revoir","STOP"); 
+AddText("Je m'appelle Ispim. Mon travail est d'aider les nouveaux venu dans la ville de Flaris.","Presentation");
+AddText("Vous êtes à Flaris, la capitale de Madrigal. N'est ce pas paisible ? Je suis ravi de vivre ici. Mais attention des créatures rodent à l'extérieur de la ville.","Lieux");
+AddText("Il y a de nombreux magasin en ville. Vous trouverez les principale boutiques au centre de Flarine, mise à part le magasin de nourriture qui se trouve à l'est.","Achat");
+AddText("Si vos points de vie tombent à zéro, Vous mourrez. Donc veillez à bien surveiller vos points de vie. En cas de mort rassurez vous on vous proposera de ressuciter en ville, contre une perte d'expérience à partir du niveau 21.","Mort");

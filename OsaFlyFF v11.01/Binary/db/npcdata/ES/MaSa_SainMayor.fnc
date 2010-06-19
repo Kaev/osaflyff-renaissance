@@ -1,0 +1,1 @@
+AddText("Disculpame. Si no estas ocupada, ¿Serías tan amable de escuchar mi historia? ¿Algúna vez escuchaste del templo de Ivillis?","START");

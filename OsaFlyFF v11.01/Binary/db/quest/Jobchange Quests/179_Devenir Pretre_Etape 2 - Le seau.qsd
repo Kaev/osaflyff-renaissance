@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2a - Le sceau"
+g_dwQuestID = 179
+g_szNPCName = "MaDa_Ellend"
+g_szNPCNameEnd = "MaFl_Clamb"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"ASSIST"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,178,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici une lettre de recommandation qui montre que le maitre vous a reconnu comme sucesseur. Veillez sur elle comme sur votre vie. Si vous la perdiez vous n'aurez plus de preuve que je vous ai reconnu.")
+AddEndNPCDialog(g_dwQuestID,1,"Apportez cette lettre à Clamb qui est le sage-prêtre. Il est à la Fountain of Dead Person au nord des montagne de Leren.")
+AddEndNPCDialog(g_dwQuestID,1,"Oh, avant de rejoindre Guabrill, vous devrez trouver le Seal of Aenn que possède Ren dans le desert de fantaisie au sud de Saint Morning.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- Si on a va parler à lahola
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"J'était docteur auparavant. Je pouvais soigner n'importe quel maladie ou blessure! Ha ha ha! Maintenant je ne soigne que mes coéquipiés.")
+
+
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndRequiredMonsterKill(g_dwQuestID,2,688,1) --il faut tuer Ren
+AddQuestDrop(g_dwQuestID,2,688,18175,3000000000,1) --on permet de droper le sceau de annel en tuant Ren à 100%
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,3)
+AddEndRequiredItem(g_dwQuestID,2,18175,1) --il faut le sceau de annel
+AddEndNPCDialog(g_dwQuestID,2,"Hmm? Ceci... C'est le sceau de Aenn ! Vous l'avez trouvé! C'est le symbole de la famille  Aenn, ce qui en fait une relique fantastique.")
+AddEndNPCDialog(g_dwQuestID,2,"J'avais entendu une rumeur comme quoi Ren possédait un objet de grande valeur, qu'il avait volé il  y a longtemps. Maintenant je vois que la rumeur disait vrai.")
+AddEndNPCDialog(g_dwQuestID,2,"J'apprécie vos effort pour le retrouver. Merci.")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+

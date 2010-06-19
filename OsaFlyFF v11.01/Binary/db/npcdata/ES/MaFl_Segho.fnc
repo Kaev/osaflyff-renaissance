@@ -1,0 +1,1 @@
+AddText("¿Te ayudo en algo?","START");

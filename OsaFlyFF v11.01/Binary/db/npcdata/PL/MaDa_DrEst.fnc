@@ -1,0 +1,1 @@
+AddText("The creatures here were once the machines used in the Erons Factory. But the magical nature of Madrigal and exposure to waste coming from the factory turned them into the monsters they are today.","START");

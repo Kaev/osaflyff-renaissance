@@ -1,0 +1,1 @@
+AddText("Can i help you?","START");

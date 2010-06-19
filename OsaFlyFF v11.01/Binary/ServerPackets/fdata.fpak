@@ -1,0 +1,6 @@
+pak:Addint(0xFFFFFF64);
+pak:Addint(1);
+pak:Addint(1);
+pak:Addint(5);
+pak:Addint(4);
+pak:Addint(4);

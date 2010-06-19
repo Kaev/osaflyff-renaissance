@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------ MonsterKillQuest template -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+----------------Définition des constante-----------------------------------------------------------------------
+g_szQuestName = "Etape 2 - Le successeur"
+g_dwQuestID = 164
+g_szNPCName = "MaDa_Karanduru"
+g_szNPCNameEnd = "MaFl_Hormes"
+g_dwChgPenya = 100000
+g_dwReqMinLVL = 60
+g_dwReqMaxLVL = 60
+g_szReqJobs = {"MERCENARY"}
+--------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- Do not change from here on ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,4)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCName)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+AddStartRequiredJob(g_dwQuestID,0,g_szReqJobs)
+AddStartRequiredQuest(g_dwQuestID,0,163,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCName)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Voici une lettre de recommandation qui montre que le maitre vous a reconnu comme sucesseur. Veillez sur elle comme sur votre vie. Si vous la perdiez vous n'aurez plus de preuve que je vous ai reconnu.")
+AddEndNPCDialog(g_dwQuestID,1,"Apportez cette lettre à Hormes qui est le sage-Chevalier. Il es à la Fountain of Dead Person au nord des montagne de Leren.")
+AddEndNPCDialog(g_dwQuestID,1,"Cependant avant de t'adresser à Hormes, pars à la rencontre de Kidler. Il se cache près de la Cage de Clockworks, au sud de Darkon. Kidler te fournira des informations à propos du Heaume de Billein, le Héros des Chevaliers.")
+AddEndNPCDialog(g_dwQuestID,1,"Trouve ce heaume et rapporte le à Hormes.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+-- Si onreparle a Hormes avant
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Oh Billein, grand guerrier, si tu nous avais laissé un indice sur le lieu ou repose ton heaume...")
+
+
+--Si on parle à Hormes apres
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,841,1)
+AddQuestDrop(g_dwQuestID,2,841,18168,3000000000,1)
+AddQuestDrop(g_dwQuestID,2,841,18169,3000000000,1)
+AddEndRequiredItem(g_dwQuestID,2,18168,1)
+AddEndRequiredItem(g_dwQuestID,2,18169,1)
+AddEndNPCDialog(g_dwQuestID,2,"Oh ! C'est... c'est le heaume en or que portait Billein pendant la Grande Guerre ! Où l'as-tu retrouvé ?! Merci! Il apparttenait à Billein le héro Chevalier durant la guerre des héros..")
+AddEndNPCDialog(g_dwQuestID,2,"Nous l'avions perdu depuis que Kidler, le pilleur de tombes, l'avait dérobé et caché. Personne n'avait réussi à le retrouver à ce jour…")
+AddEndNPCDialog(g_dwQuestID,2,"Merci, merci infiniment en tout cas !")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+--On va parler à Hormes
+AddState(g_dwQuestID,3,14)

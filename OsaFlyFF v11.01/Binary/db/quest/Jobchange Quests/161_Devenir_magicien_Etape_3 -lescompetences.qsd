@@ -1,0 +1,46 @@
+g_dwQuestID = 161
+g_szQuestName = "Etape 3 - Les competences"
+g_szNPCNameStart = "MaSa_Hee"
+g_szNPCNameEnd = "MaFl_Hastan"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,160,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Vous avez parfaitement réussi la deuxieme épreuve. Mais il en reste encore d'autres à passer pour devenir un magicien.")
+AddEndNPCDialog(g_dwQuestID,1,"Voici maintenant le prochain test. Vous devez en apprendre plus sur les compétences de magicien. Premièrement aller là où vivent les High-Dwarpets.")
+AddEndNPCDialog(g_dwQuestID,1,"Et là bas allez voir Hastan. Il vous en apprendra plus sur les competences de magicien. Oh, pour le trouver... ")
+AddEndNPCDialog(g_dwQuestID,1,"Vous pouvez voir le lieu où ils vivent en appuyant sur la touche M. Il est vraiment pratique de savoir se repérer sur une carte")
+AddEndNPCDialog(g_dwQuestID,1,"Acceptez vous cette nouvelle épreuve ?")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+-- On n'est pas encore aller chercher les competences
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameStart)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Vous ne pouvez pas abandonner maintenant.. Celà n'a pas de sens d'abandonner si soudainement")
+--On rencontre le npc de fin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+
+AddEndNPCDialog(g_dwQuestID,2,"Etes vous inquiet au sujet de ce que vous a dit Wingyei ? Ne vous en préoccupez pas. Croyez simplement en vous. Ok?? Alors écoutez attentivement * sort un livre et feuillette *")
+AddEndNPCDialog(g_dwQuestID,2,"La volonté de Rhsis vous permettra d'abattre vos ennemies avec vos pouvoirs. Ceci est un sort de magicien basique, connu sous le nom de Fouet mental.")
+AddEndNPCDialog(g_dwQuestID,2,"C'est une attaque psychique puissante que seul les plus puisssant magicien peuvent apprendre et il semblerais que vous soyez assez puissant...")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,1500)
+

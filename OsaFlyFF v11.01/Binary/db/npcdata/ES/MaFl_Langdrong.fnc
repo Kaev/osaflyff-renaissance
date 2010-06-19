@@ -1,0 +1,1 @@
+AddText("¿Quiéres que te salude? ¡NUNCA! ¡Podre vivir como los humanos pero no soy nada parecida a ellos! ¡Recuerda eso!","START");

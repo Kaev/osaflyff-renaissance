@@ -1,0 +1,1 @@
+AddText("My baby was so cute I can still hear her voice.","START");

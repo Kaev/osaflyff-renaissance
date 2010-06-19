@@ -1,0 +1,55 @@
+g_dwQuestID = 162
+g_szQuestName = "Etape 4 - Dernière étape"
+g_szNPCNameStart = "MaFl_Hastan"
+g_szNPCNameEnd = "MaSa_Lopaze"
+
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Initialisation des boutons
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,15)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,161,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndAddItem(g_dwQuestID,1,10388,1)
+AddEndNPCDialog(g_dwQuestID,1,"Bien je vous ai appris tout ce que je sais maintenant. Ne perdez pas ce livre des techniques que je vous donne c'est très important. Compris ?")
+AddEndNPCDialog(g_dwQuestID,1,"Maintenant vous êtes face à votre dernière épreuve. Vous savez où se trouve le Drillmaster, n'est ce pas? Allez y et trouvez l'instructeur. J'ai oublié son nom...")
+AddEndNPCDialog(g_dwQuestID,1,"Oh, avant d'aller le voir, vous devez tuer Sedo au pied de l'arbre sacré de saint morning.")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+
+-- On n'est pas encore aller chercher les competences
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Laisser moi tranquil, j'ai tellement de chose à faire.. Satané Sedo..")
+
+--On rencontre le npc de fin
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndRequiredMonsterKill(g_dwQuestID,2,752,1) -- Il faut tuer un sedo
+AddEndRequiredItem(g_dwQuestID,2,10388,1) -- il faut le label of technique
+AddEndNPCDialog(g_dwQuestID,2,"Merci beaucoup, Vous nous retirez une épine du pied ! C'était le test final. Il s'agissait du devoir du magicien. ")
+AddEndNPCDialog(g_dwQuestID,2,"Les magiciens utilisent le combat à longue portée, en effet ils sont faible en combat de mélée. Mais ils peuvent attaquer plusieurs ennemies en même temps de très loin.")
+AddEndNPCDialog(g_dwQuestID,2,"Félicitation! Vous avez passé tous les test, vous êtes maintenant un Magicien")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+-- Recompense et finalisation
+AddState(g_dwQuestID,3,14)
+SetEndResetStats(g_dwQuestID,3,1)
+SetEndSetJob(g_dwQuestID,3,"MAGICIAN")
+SetEndChangeSkillPoint(g_dwQuestID,3,90)
+AddEndAddItem(g_dwQuestID,3,10434,1)
+AddEndAddItem(g_dwQuestID,3,10207,1)
+AddEndAddItem(g_dwQuestID,3,10209,1)
+AddEndAddItem(g_dwQuestID,3,10211,1) -- donne un restat
+AddEndRemoveItem(g_dwQuestID,3,10388,1)
+

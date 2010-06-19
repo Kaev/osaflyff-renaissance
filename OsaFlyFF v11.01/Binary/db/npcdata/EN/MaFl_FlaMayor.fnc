@@ -1,0 +1,1 @@
+AddText("Hello and welcome to Flarine! Please take your time to see all our beautifull town!","START");

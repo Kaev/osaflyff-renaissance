@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------
+------------------------------------------   SpecialQuestDrop template   -------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+g_szQuestName 		= "Guild Creation"
+g_dwQuestID 		= 8000
+g_szNPCNameStart	= "MaSa_Helena"
+g_szNPCNameEnd		= g_szNPCNameStart
+g_dwChgPenya 		= -1000000
+g_dwReqPenya		= g_dwChgPenya
+g_dwReqMinLVL 		= 40
+g_dwReqMaxLVL 		= 120
+g_dwReqMemberCount	= 3
+g_szAddDialogs 		= {"You look so strong already. I just tried to imagine how much fun you could have and how strong you'd be if you'd team up with other people like you...","I could help you at it! Do you want to create a guild with some of your buddies? It only costs 1,000,000 Penya!"}
+g_szFinishDialogs 	= {"Congratulations! You are now guild leader of a new guild. I hope the you will have fun!"}
+g_szCannotFinishDialogs = {"You need to have at least 3 people in a party. You must be the party leader. None in the party may be in a guild and all members must not have been in a guild for at least two days.","Also, you need to pay me 1,000,000 Penya for my help."}
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------   Do not change from here on   ----------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+SetRepeatable(g_dwQuestID,1)
+
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,g_dwReqMinLVL,g_dwReqMaxLVL)
+SetStartRequiredCanJoinGuild(g_dwQuestID,0,1)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+for i = 1 , table.getn(g_szAddDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,1,g_szAddDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__YES__",g_dwQuestID,2);
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_DONT_ADD_QUEST","__NO__",g_dwQuestID,0);
+
+AddState(g_dwQuestID,2,0)
+SetStartNPC(g_dwQuestID,2,g_szNPCNameStart)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szCannotFinishDialogs) , 1 do
+	AddStartNPCDialog(g_dwQuestID,2,g_szCannotFinishDialogs[i])
+end
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+SetEndRequiredPenya(g_dwQuestID,2,g_dwReqPenya)
+SetEndRequiredParty(g_dwQuestID,2,1)
+SetEndRequiredPartyLeader(g_dwQuestID,2,1)
+SetEndRequiredPartyMemberCount(g_dwQuestID,2,g_dwReqMemberCount)
+SetEndRequiredPartyCanJoinGuild(g_dwQuestID,2,1)
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+for i = 1 , table.getn(g_szFinishDialogs) , 1 do
+	AddEndNPCDialog(g_dwQuestID,2,g_szFinishDialogs[i])
+end
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__OK__",g_dwQuestID,3)
+
+AddState(g_dwQuestID,3,14)
+SetEndChangePenya(g_dwQuestID,3,g_dwChgPenya)
+SetEndCreateGuildWithPartyMembers(g_dwQuestID,3,1)

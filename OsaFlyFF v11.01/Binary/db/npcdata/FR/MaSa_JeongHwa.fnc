@@ -1,0 +1,1 @@
+AddText("Ma fille était si mignone, j'ai encore l'impression d'entendre sa voie...","START");

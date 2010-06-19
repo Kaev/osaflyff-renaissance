@@ -1,0 +1,1 @@
+AddText("Nous sommes supérieur aux humains. Bien sure que nous le sommes ! Nous étions déjà sur ces terres alors même que l'idée de votre existence n'etait encore qu'un rêve de Rhisis. Vous avez compris ?","START");

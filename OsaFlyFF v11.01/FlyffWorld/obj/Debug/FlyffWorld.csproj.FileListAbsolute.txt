@@ -1,0 +1,3 @@
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\FlyffWorld\obj\Debug\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\FlyffWorld\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\FlyffWorld\obj\Debug\ResolveAssemblyReference.cache

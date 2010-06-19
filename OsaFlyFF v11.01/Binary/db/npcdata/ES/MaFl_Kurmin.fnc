@@ -1,0 +1,1 @@
+AddText("La Tierra tiembla en el miedo como la gran espada de la Diosas se enfrenta con el escudo de los Héroes. ","START")

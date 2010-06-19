@@ -1,0 +1,21 @@
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\bin\Debug\FlyffServerRestarter.exe
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\bin\Debug\FlyffServerRestarter.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\bin\Debug\DotNetVerifier.dll
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\bin\Debug\DotNetVerifier.pdb
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\obj\Debug\ResolveAssemblyReference.cache
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\obj\Debug\FlyffServerRestarter.exe
+F:\Mes documents\Visual Studio 2008\Projects\osaflyffsurvive\ServerRestarter\obj\Debug\FlyffServerRestarter.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\bin\Debug\FlyffServerRestarter.exe
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\bin\Debug\FlyffServerRestarter.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\bin\Debug\DotNetVerifier.dll
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\bin\Debug\DotNetVerifier.pdb
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\obj\Debug\ResolveAssemblyReference.cache
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\obj\Debug\FlyffServerRestarter.exe
+E:\Mes documents\Visual Studio 2008\Projects\Morpheus\ServerRestarter\obj\Debug\FlyffServerRestarter.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\bin\Debug\FlyffServerRestarter.exe
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\bin\Debug\FlyffServerRestarter.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\bin\Debug\DotNetVerifier.dll
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\bin\Debug\DotNetVerifier.pdb
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\obj\Debug\FlyffServerRestarter.exe
+D:\Documents and Settings\Seb\Bureau\OsaFlyff\ServerRestarter\obj\Debug\FlyffServerRestarter.pdb

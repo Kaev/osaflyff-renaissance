@@ -1,0 +1,48 @@
+g_dwQuestID = 54
+g_szQuestName = "Etape 2 - Forger l'arme"
+g_szNPCNameStart = "MaDa_Hent"
+g_szNPCNameEnd = "MaDa_Pyre"
+
+AddQuest(g_dwQuestID,g_szQuestName,0,3)
+
+-- Text button
+AddState(g_dwQuestID,0,-1)
+SetStartNPC(g_dwQuestID,0,g_szNPCNameStart)
+SetStartRequiredLVL(g_dwQuestID,0,15,120)
+AddStartRequiredJob(g_dwQuestID,0,"VAGRANT")
+AddStartRequiredQuest(g_dwQuestID,0,53,3)
+AddStartNPCTextButton(g_dwQuestID,0,g_szQuestName,g_dwQuestID,1)
+
+-- Introduction
+AddState(g_dwQuestID,1,-1)
+SetEndNPC(g_dwQuestID,1,g_szNPCNameStart)
+AddEndNPCTextButton(g_dwQuestID,1,g_szQuestName,g_dwQuestID,1)
+AddEndNPCDialog(g_dwQuestID,1,"Bien joué. Il est maintenant temps de passer à l'étape suivante de l'entrainement.")
+AddEndNPCDialog(g_dwQuestID,1,"Récupérez 10 pierres brillantes des Aibatts. Des normaux pas des capitaines ou des jeunes ")
+AddEndNPCDialog(g_dwQuestID,1,"Ensuite allez voir Pyre qui est le maitre acrobate et aportez lui ces matériaux. Pyre est prêt de l'office de quête de darken.")
+AddEndNPCDialog(g_dwQuestID,1,"Bonne chance")
+AddEndNPCAnswerButton(g_dwQuestID,1,"BTN_ADD_QUEST","__OK__",g_dwQuestID,2);
+
+-- Paying 5000 Penya
+AddState(g_dwQuestID,2,0)
+
+SetStartNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddStartNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddStartNPCDialog(g_dwQuestID,2,"Tiens Hent m'a dit que vous m'amèneriez des pierres brillantes, où sont elles ? J'en ai besoin pour la suite.")
+AddQuestDrop(g_dwQuestID,2,21,2950,1000000000,10) --donne 33% de chance de drop
+SetEndNPC(g_dwQuestID,2,g_szNPCNameEnd)
+AddEndRequiredItem(g_dwQuestID,2,2950,10)
+
+AddEndNPCTextButton(g_dwQuestID,2,g_szQuestName,g_dwQuestID,2)
+AddEndNPCDialog(g_dwQuestID,2,"Vu que vous m'apportez ceci, je suppose que vous avez réussi le premier test. Je vais donc vous parlez des armes de l'acrobate :L'arc et le yoyo")
+AddEndNPCDialog(g_dwQuestID,2,"L'arc est une arme d'attaque à distance. Il consomme une fleche par attaque. Il y a aussi 4 stades d'attaques et ils progressent en degat au fur...")
+AddEndNPCDialog(g_dwQuestID,2,"...et à mesure que vous progresserez dans ces stades.Les yoyo sont deux disques que vous pouvez tenir. Cette attaque est splendide mais ne possede pas plusieurs stades. Qu'en pensez vous ?")
+AddEndNPCDialog(g_dwQuestID,2,"Avez vous ammené les 10 pierres brillantes que Hent vous a demandé ?")
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_FINISH_QUEST","__YES__",g_dwQuestID,3);
+AddEndNPCAnswerButton(g_dwQuestID,2,"BTN_DONT_FINISH_QUEST","__NO__",g_dwQuestID,2);
+
+-- Reward: 1xBlink Sword
+AddState(g_dwQuestID,3,14)
+AddEndRemoveItem(g_dwQuestID,3,2950,10) --on recupere les pierres brillantes
+AddEndAddItem(g_dwQuestID,3,431,1) --on donne un arc
+AddFinishQuestDialog(g_dwQuestID,3,"Voici un Arc. *vous tend l'arme*")

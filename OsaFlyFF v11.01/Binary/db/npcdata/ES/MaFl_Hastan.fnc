@@ -1,0 +1,1 @@
+AddText("Somos superiores a los seres humanos. ¡Por supuesto que lo somos! Hemos estado en esta tierra desde que los humanos eran una vaga idea de Rhisis. ¿Entiendes? ","START");
